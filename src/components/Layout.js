@@ -7,17 +7,20 @@ import '../css/Layout.css';
 import addZero from '../utils/addZero';
 
 const Layout = (props) => {
-  const { date, shift, theme, patients, setModal } = props;
+  const { date, shift, theme, patients, setModal, setHomeState } = props;
 
   return (
     <React.Fragment>
       <nav className={`navbar navbar-light ${theme}-layout-theme`}>
         <div className='container-fluid d-flex justify-content-between py-4'>
 
-          <Link className='navbar-brand ms-3' to='/'>
+          <button 
+            className='btn navbar-brand ms-3'
+            onClick={() => setHomeState('home')}
+          >
             <h1><b>Nursing</b></h1>
             <h1><b>Task Tracker</b></h1>
-          </Link>
+          </button>
 
           <span className='text-end text-md-center me-3 me-md-5'>
             <h2>{date[3]}:{addZero(date[4])}</h2>

@@ -296,6 +296,7 @@ const App = () => {
           theme={theme}
           shift={shift}
           setModal={setModal}
+          setHomeState={ setHomeState }
           patients={patients}
         >
           <div id='content-wrap'>
