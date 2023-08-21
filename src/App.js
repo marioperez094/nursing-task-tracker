@@ -9,7 +9,6 @@ import Settings from './components/Settings';
 import PatientCreator from './components/PatientCreator'
 import TaskHour from './components/TaskHour'
 import TaskMaker from './components/TaskMaker'
-import PatientTable from './components/PatientTable'
 
 import dateTime from './utils/dateTime'
 import shiftHours from './utils/shiftHours';
@@ -38,6 +37,7 @@ const App = () => {
     restraints: false,
     sedation: false,
     pain: false,
+    neuro: 1,
   })
   const [newTask, setNewTask] = useState({
     patientID: '',
@@ -142,10 +142,10 @@ const App = () => {
       type: 'meds'
     }
 
-     if (duplicateCheck(patientList[patientIndex].tasks, taskIntoArray(addedTask, patientID, currentShift)[0].id)) {
-       alert(`This would result in a task duplication.`);
-       return;
-     }
+    if (duplicateCheck(patientList[patientIndex].tasks, taskIntoArray(addedTask, patientID, currentShift)[0].id)) {
+      alert(`This would result in a task duplication.`);
+      return;
+    }
 
     patientList[patientIndex].tasks.push(...taskIntoArray(addedTask, patientID, currentShift));
 
@@ -194,6 +194,10 @@ const App = () => {
 
     addedPatient.tasks.push(...taskIntoArray(tasks[newPatient.status], newPatient.id, currentShift));
 
+    tasks['neuro'][0].frequency = parseFloat(newPatient.neuro)
+
+    addedPatient.tasks.push(...taskIntoArray(tasks['neuro'], newPatient.id, currentShift))
+
 
     if (newPatient.pain) {
       tasks['pain'][0].frequency = 1;
@@ -233,7 +237,8 @@ const App = () => {
       admission: false,
       restraints: false,
       sedation: false,
-      contAnalgesic: false,
+      pain: false,
+      neuro: 1
     };
 
     localStorage.setItem('NTTpatients', JSON.stringify(patientList))
@@ -296,6 +301,7 @@ const App = () => {
           theme={theme}
           shift={shift}
           setModal={setModal}
+          setHomeState={setHomeState}
           patients={patients}
         >
           <div id='content-wrap'>
@@ -309,7 +315,7 @@ const App = () => {
                   removePatient={removePatient}
                   taskModal={taskModal}
                   setModal={setModal}
-                  setHomeState={ setHomeState }
+                  setHomeState={setHomeState}
                   homeState={homeState}
                 />
               } />

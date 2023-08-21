@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMortarPestle, faList, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
@@ -29,6 +29,11 @@ const HourTasks = (props) => {
 
   const showPastTasks = (num) => {
     let changedHour = currentHour + num
+
+    if (changedHour > 23) {
+      changedHour = 0;
+    }
+
     setCurrentHour(changedHour)
     setCurrentTask(tasks.filter((task) => { return task.hour === changedHour }))
     filterTasks = currentTasks.filter((task) => { return task.type === type })

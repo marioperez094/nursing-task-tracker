@@ -6,7 +6,7 @@ import ModalTemplate from './ModalTemplate';
 
 const PatientCreator = (props) => {
   const { theme, newPatient, changePatientAttributes, onExitEvent, addNewPatient } = props;
-  const { id, status, admission, restraints, sedation, pain } = newPatient;
+  const { id, status, admission, restraints, sedation, pain, neuro } = newPatient;
   return (
     <ModalTemplate
       title={'Add a new patient'}
@@ -41,6 +41,26 @@ const PatientCreator = (props) => {
             <option value='medSurg'>Medical/Surgical</option>
             <option value='tele'>Telemetry</option>
           </select>
+        </div>
+
+        <div className='mb-3 row'>
+          <label className='form-label col-12 col-md-6 mt-2'>
+            <h5>Neuro Check:</h5>
+          </label>
+          <div className='col-12 col-md-6'>
+            <select
+              className='form-select text-center col-3'
+              value={neuro}
+              onChange={(e) => changePatientAttributes(e)}
+              data-attribute='neuro'
+            >
+              <option value={1}>Q-1</option>
+              <option value={2}>Q-2</option>
+              <option value={4}>Q-4</option>
+              <option value={8}>Q-8</option>
+            </select>
+          </div>
+
         </div>
 
         <div className='mt-5 mb-3 row'>

@@ -20,11 +20,6 @@ const tasks = {
     frequency: 1
   },
   {
-    name: 'Neuro',
-    type: 'chart',
-    frequency: 1
-  },
-  {
     name: 'Turn/Reposition',
     type: 'chart',
     frequency: 2
@@ -36,6 +31,16 @@ const tasks = {
   }],
   'tele': [{
     name: 'Vitals',
+    type: 'chart',
+    frequency: 4
+  },
+  {
+    name: 'Intake',
+    type: 'chart',
+    frequency: 4
+  },
+  {
+    name: 'Output',
     type: 'chart',
     frequency: 4
   },
@@ -52,7 +57,17 @@ const tasks = {
   'medSurg': [{
     name: 'Vitals',
     type: 'chart',
-    times: [8, 20]
+    times: [8, 16, 20, 4]
+  },
+  {
+    name: 'Intake',
+    type: 'chart',
+    frequency: 4
+  },
+  {
+    name: 'Output',
+    type: 'chart',
+    frequency: 4
   },
   {
     name: 'Turn/Reposition',
@@ -191,7 +206,7 @@ const tasks = {
     type: 'chart',
   },
   {
-    name: 'AdHoc- PAWSS (it ETOH)',
+    name: 'AdHoc- PAWSS (if ETOH)',
     type: 'chart',
   },
   {
@@ -222,6 +237,11 @@ const tasks = {
   }],
   'rass': [{
     name: 'RASS',
+    type: 'chart',
+    frequency: 4
+  }],
+  'neuro': [{
+    name: 'Neuro',
     type: 'chart',
     frequency: 4
   }]

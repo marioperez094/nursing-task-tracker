@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -25,13 +24,13 @@ const PatientList = (props) => {
           <h5>&times;</h5>
         </button>
 
-          <button 
-            className='btn btn-outline-secondary btn-patient-home'
-            onClick={() => setHomeState(id)}
-          >
-            <label>RM#</label>
-            <h6>{id}</h6>
-          </button>
+        <button
+          className='btn btn-outline-secondary btn-patient-home'
+          onClick={() => setHomeState(id)}
+        >
+          <label>RM#</label>
+          <h6>{id}</h6>
+        </button>
 
         <button
           className='btn btn-outline-secondary btn-patient-home d-flex justify-content-between align-items-center'
@@ -66,7 +65,7 @@ const PatientList = (props) => {
       </div>
 
       <div className='col-md-2 text-center d-none d-md-inline'>
-        <button 
+        <button
           className='btn btn-outline-secondary btn-patient-home w-100'
           onClick={() => setHomeState(id)}
         >

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ModalTemplate from './ModalTemplate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
 const TaskMaker = (props) => {
   const { patient, onExitEvent, addNewTask, changeTaskAttributes, newTask, theme } = props
-  const { id, tasks } = patient;
+  const { id } = patient;
   const { name, status, frequency, times, type } = newTask;
 
   return (
