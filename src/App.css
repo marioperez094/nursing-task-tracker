@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
+.blue-body {
+  background-color: #C3EEFA;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.purple-body {
+  background-color: #E9CFFE;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.blue-title {
+  color: #4480bc;
+  border-bottom: 1px solid #4480bc;
+}
+
+.purple-title {
+  color: #8553b8;
+  border-bottom: 1px solid #8553b8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgba(0, 0, 0, 0.4);
+  opacity: 0.6;
+}
+
+.btn:hover {
+  opacity: 0.6;
+}
+
+.container-fluid {
+  max-width: 1200px;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;
+}
+
+.btn-settings {
+  max-height: 50px;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-box {
+  border: 1px solid #888;
+  border-radius: 25px;
+  margin: 15% auto;
+  padding: 20px;
+  width: 60%;
+  max-width: 700px;
+}
+
+@media (max-width: 767px) {
+  .modal-box {
+    width: 80%
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+#blue-active-hour h4,
+#purple-active-hour h4 {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#blue-active-hour td {
+  background-color: #C3EEFA;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#purple-active-hour td {
+  background-color: #E9CBFF;
 }

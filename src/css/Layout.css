@@ -1,0 +1,55 @@
+.blue-layout-theme {
+  background-color: #A7C7E7;
+}
+
+.purple-layout-theme {
+  background-color: #B195D2;
+}
+
+.navbar {
+  padding-top: 0px;
+  border-radius: 0 0 25px 25px;
+}
+
+.navbar h1,
+.navbar h4,
+.navbar h2 {
+  color: white;
+  line-height: 30px;
+}
+
+.navbar-brand b {
+  font-size: 30px;
+}
+
+.btn-patient-creator {
+  height: 75px;
+  width: 125px;
+}
+
+.floating-btn {
+  height: 75px;
+  width: 75px;
+  z-index: 2;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  text-align: center;
+  border-radius: 60px;
+}
+
+#footer {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
+footer {
+  font-size: 20px;
+}
+
+footer small {
+  font-size: 15px;
+}
