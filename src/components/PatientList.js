@@ -5,7 +5,7 @@ import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import TaskIcons from './TaskIcons';
 
 const PatientList = (props) => {
-  const { patient, hour, theme, removePatient, taskModal, currentShift, setHomeState } = props;
+  const { patient, hour, theme, taskModal, currentShift, setHomeState } = props;
   const { id, tasks } = patient;
 
   const currentShiftTasks = tasks.filter((task) => { return currentShift.indexOf(task.hour) > -1 })
@@ -19,7 +19,7 @@ const PatientList = (props) => {
       <div className='col-12 d-flex d-md-none justify-content-between align-items-center'>
         <button
           className='btn btn-outline-danger btn-patient-home ms-1 me-2'
-          onClick={() => removePatient(id)}
+          onClick={() => taskModal(id, 'patientRemover')}
         >
           <h5>&times;</h5>
         </button>
@@ -58,7 +58,7 @@ const PatientList = (props) => {
       <div className='col-1 d-none d-md-inline'>
         <button
           className='btn btn-outline-danger btn-patient-home ms-1 me-2 w-100'
-          onClick={() => removePatient(id)}
+          onClick={() => taskModal(id, 'patientRemover')}
         >
           <h5>&times;</h5>
         </button>

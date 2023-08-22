@@ -33,6 +33,9 @@ const HourTasks = (props) => {
     if (changedHour > 23) {
       changedHour = 0;
     }
+    else if (changedHour < 0) {
+      changedHour = 23;
+    }
 
     setCurrentHour(changedHour)
     setCurrentTask(tasks.filter((task) => { return task.hour === changedHour }))
@@ -57,8 +60,9 @@ const HourTasks = (props) => {
                     className='checkboxes'
                     checked={task.complete}
                     onChange={(e) => completeTask(e)}
+                    id={`${task.id}`}
                   />
-                  <label className='ms-3'>
+                  <label htmlFor={`${task.id}`} className='ms-3'>
                     <h5 className={`${task.complete ? 'crossed-task' : null}`}>
                       <FontAwesomeIcon
                         icon={icon(task.type)}

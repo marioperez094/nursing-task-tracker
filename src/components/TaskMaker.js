@@ -91,19 +91,19 @@ const TaskMaker = (props) => {
           </label>
         </div>
 
-        <div className='row'>
-          <div className='col-12 col-md-6 mt-5 text-center'>
+        <div className='row mt-5'>
+          <div className='col-12 col-md-6 text-center'>
             <button
-              className='btn btn-success'
+              className='btn w-100 btn-success'
               data-attribute='false'
               onClick={(e) => addNewTask(e, 'false')}
             >
               <h5><FontAwesomeIcon icon={faFileCirclePlus} /> <span>Add</span></h5>
             </button>
           </div>
-          <div className='col-12 col-md-6 mt-5 text-center'>
+          <div className='col-12 col-md-6 mt-4 mt-md-0 text-center'>
             <button
-              className='btn btn-success'
+              className='btn w-100 btn-success'
               data-attribute='addPatient'
               onClick={(e) => addNewTask(e, 'taskMaker')}
             >

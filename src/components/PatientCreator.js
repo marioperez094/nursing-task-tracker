@@ -69,9 +69,10 @@ const PatientCreator = (props) => {
               type='checkbox'
               data-attribute='admission'
               value={admission}
+              id='admission'
               onChange={(e) => changePatientAttributes(e)}
             />
-            <label className='form-label ms-4'>
+            <label htmlFor='admission' className='form-label ms-4'>
               <h5>Admission</h5>
             </label>
           </div>
@@ -81,9 +82,10 @@ const PatientCreator = (props) => {
               type='checkbox'
               data-attribute='restraints'
               value={restraints}
+              id='restraints'
               onChange={(e) => changePatientAttributes(e)}
             />
-            <label className='form-label ms-4'>
+            <label htmlFor='restraints' className='form-label ms-4'>
               <h5>Restraints</h5>
             </label>
           </div>
@@ -92,10 +94,11 @@ const PatientCreator = (props) => {
             <input
               type='checkbox'
               data-attribute='sedation'
+              id='sedation'
               value={sedation}
               onChange={(e) => changePatientAttributes(e)}
             />
-            <label className='form-label ms-4'>
+            <label htmlFor='sedation' className='form-label ms-4'>
               <h5>Sedation</h5>
             </label>
           </div>
@@ -105,26 +108,27 @@ const PatientCreator = (props) => {
               type='checkbox'
               data-attribute='pain'
               value={pain}
+              id='pain'
               onChange={(e) => changePatientAttributes(e)}
             />
-            <label className='form-label ms-4'>
+            <label htmlFor='pain' className='form-label ms-4'>
               <h5>Cont. Analgesic</h5>
             </label>
           </div>
 
-          <div className='row'>
-            <div className='col-12 col-md-6 mt-5 text-center'>
+          <div className='row mt-5'>
+            <div className='col-12 col-md-6 text-center'>
               <button
-                className='btn btn-success'
+                className='btn w-100 btn-success'
                 data-attribute='false'
                 onClick={(e) => addNewPatient(e, 'false')}
               >
                 <h5><FontAwesomeIcon icon={faUserPlus} /> <span>Add</span></h5>
               </button>
             </div>
-            <div className='col-12 col-md-6 mt-5 text-center'>
+            <div className='col-12 col-md-6 mt-4 mt-md-0 text-center'>
               <button
-                className='btn btn-success'
+                className='btn w-100 btn-success'
                 data-attribute='addPatient'
                 onClick={(e) => addNewPatient(e, 'addPatient')}
               >

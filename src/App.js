@@ -9,6 +9,7 @@ import Settings from './components/Settings';
 import PatientCreator from './components/PatientCreator'
 import TaskHour from './components/TaskHour'
 import TaskMaker from './components/TaskMaker'
+import PatientRemover from './components/PatientRemover';
 
 import dateTime from './utils/dateTime'
 import shiftHours from './utils/shiftHours';
@@ -194,7 +195,17 @@ const App = () => {
 
     addedPatient.tasks.push(...taskIntoArray(tasks[newPatient.status], newPatient.id, currentShift));
 
-    tasks['neuro'][0].frequency = parseFloat(newPatient.neuro)
+    if (parseFloat(newPatient.neuro) === 8) {
+      delete tasks['neuro'][0].frequency 
+      tasks['neuro'][0].times = [8, 16, 20, 4]
+    }
+    else {
+      tasks['neuro'][0].frequency = parseFloat(newPatient.neuro)
+    }
+
+    console.log(tasks['neuro'][0])
+
+    
 
     addedPatient.tasks.push(...taskIntoArray(tasks['neuro'], newPatient.id, currentShift))
 
@@ -249,13 +260,14 @@ const App = () => {
 
   //Remove Patient
   const removePatient = (id) => {
+    setModal('false');
     const patientList = patients.filter((patient) => {
       return patient.id !== id
-    })
+    });
 
 
-    localStorage.setItem('NTTpatients', JSON.stringify(patientList))
-    setPatients(patientList)
+    localStorage.setItem('NTTpatients', JSON.stringify(patientList));
+    setPatients(patientList);
   }
 
   //Patient ID for task
@@ -365,6 +377,16 @@ const App = () => {
           addNewTask={addNewTask}
           onExitEvent={setModal}
           theme={theme}
+        />
+        : null
+      }
+
+      {modal === 'patientRemover' ?
+        <PatientRemover
+          onExitEvent={setModal}
+          theme={theme}
+          patient={patients[patientIndex]}
+          removePatient={removePatient}
         />
         : null
       }

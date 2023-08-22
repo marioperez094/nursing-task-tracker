@@ -15,7 +15,7 @@ const Layout = (props) => {
         <div className='container-fluid d-flex justify-content-between py-4'>
 
           <button
-            className='btn navbar-brand ms-3 text-start'
+            className='btn navbar-brand text-start'
             onClick={() => setHomeState('home')}
           >
             <h1><b>Nursing</b></h1>
