@@ -1,7 +1,7 @@
 {
   "name": "nursing-task-tracker",
   "version": "0.1.0",
-  "homepage": "https://altcademy.github.io/first-react-app/",
+  "homepage": "https://marioperez094.github.io/nursing-task-tracker/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
