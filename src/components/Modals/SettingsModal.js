@@ -1,15 +1,18 @@
+//External Imports
 import React from 'react';
 
+//Components
 import ModalTemplate from './ModalTemplate';
 
-const Settings = (props) => {
-  const { theme, setTheme, shift, changeShift, onExitEvent } = props;
+//Functions
+import { useThemeContext } from '../../context/ThemeContext';
+
+const Settings = () => {
+  const { setTheme } = useThemeContext();
 
   return (
     <ModalTemplate
       title={'User settings'}
-      theme={theme}
-      onExitEvent={onExitEvent}
     >
       <form className='shift-chooser-form'>
         <div className='form-group text-center'>
@@ -21,9 +24,7 @@ const Settings = (props) => {
             </label>
             <div className='col-12 d-flex justify-content-center'>
               <select
-                className='form-select shift-selector text-center'
-                value={shift}
-                onChange={(e) => changeShift(e)}
+                className='form-select shift-selector text-center w-50'
               >
                 <option value='AM'>AM</option>
                 <option value='PM'>PM</option>
@@ -38,13 +39,13 @@ const Settings = (props) => {
             </label>
             <div className='col-12 d-flex justify-content-evenly'>
               <button
-                className={`btn btn-purple btn-theme-picker`}
+                className={`btn-purple btn-theme-picker btn-circular`}
                 type='button'
                 onClick={() => setTheme('purple')}
               >
               </button>
               <button
-                className={`btn btn-blue btn-theme-picker`}
+                className={`btn-blue btn-theme-picker btn-circular`}
                 type='button'
                 onClick={() => setTheme('blue')}
               >

@@ -1,0 +1,25 @@
+.purple-layout {
+  background-color: #B195D2;
+  transition: 1s;
+}
+
+.blue-layout {
+  background-color: #A7C7E7;
+  transition: 1s;
+}
+
+.navbar {
+  padding-top: 0px;
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+  margin: 0 auto 0 1rem;
+}
+
+.navbar h1,
+.navbar h2,
+.navbar h4 {
+  color: white;
+}

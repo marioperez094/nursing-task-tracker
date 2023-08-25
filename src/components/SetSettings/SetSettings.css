@@ -1,0 +1,17 @@
+.btn-settings {
+  border-color: #808080;
+  height: 50px;
+  width: 50px;
+  margin: 0 1rem 0 auto;
+  color: #808080;
+}
+
+.btn-settings:active {
+  background-color: #808080;
+  border: 5px solid black;
+}
+
+.icon-settings {
+  height: 30px;
+  width: 30px;
+}
