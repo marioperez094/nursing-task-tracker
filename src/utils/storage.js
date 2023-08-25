@@ -1,5 +1,10 @@
 const storage = (name, unChanged) => {
-  const local = localStorage.getItem(name);
+  let local = localStorage.getItem(name);
+
+  if (name === 'NTTpatients') {
+    local = JSON.parse(local);
+  }
+  
   if (local) {
     return local;
   }

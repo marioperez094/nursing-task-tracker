@@ -85,3 +85,24 @@
 .btn-blue {
   background-color: #A7C7E7 !important;
 }
+
+.shake-modal {
+  animation-name: shake-modal;
+  animation-duration: 0.1s;
+}
+
+@keyframes shake-modal {
+  33% {
+    margin-left: 20%;
+    margin-right: auto;
+  }
+  66% {
+    margin-left: auto;
+    margin-right: 20%;
+  }
+}
+
+.warning-text {
+  color: #DC3545;
+  font-size: 20px;
+}

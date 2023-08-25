@@ -4,7 +4,9 @@ import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
 import TaskIcons from '../TaskIcons/TaskIcons';
 
-import { useDateContext } from "../../context/DateContext"
+import { useDateContext } from "../../context/DateContext";
+import { useModalContext } from '../../context/ModalContext';
+
 import filterTasks from '../../utils/filterTasks';
 
 import './PatientList.css'
@@ -12,14 +14,21 @@ import './PatientList.css'
 const PatientList = (props) => {
   const { patient } = props;
   const { id, tasks } = patient;
+  
   const { date, currentShift } = useDateContext();
+  const { setModal, setPatientID } = useModalContext();
+
   const filters = filterTasks(tasks, date, currentShift);
 
   return (
-    <div className='row shadow-lg bg-body rounded my-3'>
+    <div className='row shadow-lg bg-body rounded my-3 patient-list'>
       <div className='col-12 d-flex d-md-none justify-content-between align-items-center'>
         <button
           className='btn btn-outline-danger btn-patient-home ms-1 me-2'
+          onClick={() => {
+            setModal('removePatient');
+            setPatientID(id)
+          }}
         >
           <h5>&times;</h5>
         </button>
@@ -52,9 +61,13 @@ const PatientList = (props) => {
 
       {/*Non-mobile*/}
 
-      <div className='col-1 d-none d-md-inline'>
+      <div className='col-1 d-none d-md-inline patient-list'>
         <button
           className='btn btn-outline-danger btn-patient-home ms-1 me-2 w-100'
+          onClick={() => {
+            setModal('removePatient');
+            setPatientID(id)
+          }}
         >
           <h5>&times;</h5>
         </button>

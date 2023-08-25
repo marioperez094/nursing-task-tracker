@@ -2,15 +2,16 @@
 import React from 'react';
 
 //Components
-import SettingsModal from './SettingsModal'
-import PatientCreator from './PatientCreator'
+import SettingsModal from './SettingsModal';
+import PatientCreator from './PatientCreator';
+import RemovePatient from './RemovePatient';
 
 //Functions
 import { useModalContext } from '../../context/ModalContext';
 
 //Style Import
 
-const ModalWindow = (props) => {
+const ModalWindow = () => {
   const { modal } = useModalContext();
 
   const selectModal = (modal) => {
@@ -19,6 +20,8 @@ const ModalWindow = (props) => {
         return <SettingsModal />
       case 'addPatient':
         return <PatientCreator />
+      case 'removePatient':
+        return <RemovePatient />
     }
   }
 

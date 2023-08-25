@@ -1,7 +1,4 @@
-
-
 const filterTasks = (tasks, date, currentShift) => {
-  console.log(currentShift)
   
   const currentShiftTasks = tasks.filter((task) => { return currentShift.indexOf(task.hour) > -1 })
   

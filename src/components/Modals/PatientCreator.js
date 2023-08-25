@@ -17,7 +17,9 @@ const PatientCreator = () => {
   const { patients, setPatients } = usePatientsContext();
   const { setModal } = useModalContext();
   const { date, currentShift } = useDateContext();
-
+  
+  const [shakeModal, setShakeModal] = useState('')
+  const [error, setError] = useState('')
   const [newPatient, setNewPatient] = useState({
     id: '',
     status: 'icu',
@@ -47,12 +49,14 @@ const PatientCreator = () => {
     e.preventDefault();
 
     if(newItemChecker(id, patients)) {
-      alert(newItemChecker(id, patients));
+      setShakeModal('shake-modal')
+      setError(newItemChecker(id, patients));
       return;
     };
 
     let patientList = [...patients, addNewPatient(newPatient, currentShift, date)];
 
+    localStorage.setItem('NTTpatients', JSON.stringify(patientList))
     setPatients(patientList);
     setModal(modalState);
   }
@@ -60,6 +64,7 @@ const PatientCreator = () => {
   return (
     <ModalTemplate
       title={ 'Add a new patient' }
+      shakeModal={ shakeModal }
     >
       <form className='text-center'>
         <div className='mb-3'>
@@ -72,7 +77,12 @@ const PatientCreator = () => {
             className='form-control'
             value={ id }
             onChange={(e) => changePatientAttributes(e)}
+            required
           />
+          { shakeModal === 'shake-modal'
+            ? <p className='warning-text'>*{error}</p>
+            : null
+          }
         </div>
 
         <div className='row mb-3'>

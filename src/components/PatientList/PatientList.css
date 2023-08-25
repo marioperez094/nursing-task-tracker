@@ -1,3 +1,14 @@
+.patient-list {
+  animation-name: scroll-left;
+  animation-duration: 1s;
+}
+
+@keyframes scroll-left {
+  0%{
+    margin-left: -20%;
+  }
+}
+
 .btn-patient-home {
   height: 100px;
 }

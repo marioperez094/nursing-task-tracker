@@ -9,9 +9,10 @@ import { useThemeContext } from '../../context/ThemeContext'
 import './ModalTemplate.css'
 
 const ModalTemplate = (props) => {
-  const { title } = props
+  const { title, shakeModal } = props
   const { theme } = useThemeContext();
   const { setModal } = useModalContext();
+
 
   return (
     <div 
@@ -19,7 +20,7 @@ const ModalTemplate = (props) => {
       onClick={() => setModal('false')}
     >
       <div 
-        className={ `${ theme }-body modal-box` }
+        className={ `${ theme }-body modal-box ${ shakeModal }` }
         onClick={(e) => e.stopPropagation()}  
       >
         <div className='exit-button text-end'>
