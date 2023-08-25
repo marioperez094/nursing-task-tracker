@@ -6,9 +6,12 @@ import ModalTemplate from './ModalTemplate';
 
 //Functions
 import { useThemeContext } from '../../context/ThemeContext';
+import { useDateContext } from '../../context/DateContext';
+import shiftHours from '../../utils/shiftHours';
 
 const Settings = () => {
   const { setTheme } = useThemeContext();
+  const { shift, setShift, currentShift, setCurrentShift } = useDateContext();
 
   return (
     <ModalTemplate
@@ -25,6 +28,12 @@ const Settings = () => {
             <div className='col-12 d-flex justify-content-center'>
               <select
                 className='form-select shift-selector text-center w-50'
+                value={ shift }
+                onChange={(e) => { 
+                  setShift(e.target.value)
+                  localStorage.setItem('NTTshift', e.target.value)
+                  setCurrentShift(shiftHours(e.target.value)) 
+                }}
               >
                 <option value='AM'>AM</option>
                 <option value='PM'>PM</option>
@@ -41,13 +50,19 @@ const Settings = () => {
               <button
                 className={`btn-purple btn-theme-picker btn-circular`}
                 type='button'
-                onClick={() => setTheme('purple')}
+                onClick={() => {
+                  setTheme('purple')
+                  localStorage.setItem('NTTtheme', 'purple')
+                }}
               >
               </button>
               <button
                 className={`btn-blue btn-theme-picker btn-circular`}
                 type='button'
-                onClick={() => setTheme('blue')}
+                onClick={() => {
+                  setTheme('blue')
+                  localStorage.setItem('NTTtheme', 'blue')
+                }}
               >
               </button>
             </div>

@@ -3,6 +3,7 @@ import React from 'react';
 
 //Components
 import SettingsModal from './SettingsModal'
+import PatientCreator from './PatientCreator'
 
 //Functions
 import { useModalContext } from '../../context/ModalContext';
@@ -16,6 +17,8 @@ const ModalWindow = (props) => {
     switch (modal) {
       case 'settings':
         return <SettingsModal />
+      case 'addPatient':
+        return <PatientCreator />
     }
   }
 

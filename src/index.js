@@ -7,6 +7,8 @@ import App from './App';
 
 import { ModalProvider } from './context/ModalContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { DateProvider } from './context/DateContext';
+import { PatientsProvider } from './context/PatientsContext';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -16,7 +18,11 @@ root.render(
   <React.StrictMode>
     <ThemeProvider>
       <ModalProvider>
-        <App />
+        <DateProvider>
+          <PatientsProvider>
+            <App />
+          </PatientsProvider>
+        </DateProvider>
       </ModalProvider>
     </ThemeProvider>
   </React.StrictMode>
