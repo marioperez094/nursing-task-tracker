@@ -93,16 +93,20 @@
 
 @keyframes shake-modal {
   33% {
-    margin-left: 20%;
+    margin-left: 200px;
     margin-right: auto;
   }
   66% {
     margin-left: auto;
-    margin-right: 20%;
+    margin-right: 200px;
   }
 }
 
 .warning-text {
   color: #DC3545;
   font-size: 20px;
+}
+
+.crossed-task {
+  text-decoration: line-through;
 }

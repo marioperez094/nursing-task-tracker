@@ -48,16 +48,27 @@ const PatientCreator = () => {
   const addPatient = (e, modalState) => {
     e.preventDefault();
 
-    if(newItemChecker(id, patients)) {
+    if(newItemChecker(id, patients, 'Patient')) {
       setShakeModal('shake-modal')
-      setError(newItemChecker(id, patients));
+      setError(newItemChecker(id, patients, 'Patient'));
       return;
     };
 
     let patientList = [...patients, addNewPatient(newPatient, currentShift, date)];
 
+    let resetPatient = {
+      id: '',
+      status: 'icu',
+      admission: false,
+      restraints: false,
+      sedation: false,
+      pain: false,
+      neuro: 1,
+    }
+
     localStorage.setItem('NTTpatients', JSON.stringify(patientList))
     setPatients(patientList);
+    setNewPatient(resetPatient);
     setModal(modalState);
   }
 

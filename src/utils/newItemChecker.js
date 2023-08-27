@@ -1,9 +1,9 @@
 import duplicateCheck from "./duplicateCheck";
 
-const newItemChecker = (id, patients) => {
+const newItemChecker = (id, patients, type) => {
 
   if (!id) {
-    return 'Please include a room number.';
+    return 'Please include a ' + type + ' identifier';
   }
 
   if (patients.length > 9) {
@@ -11,7 +11,7 @@ const newItemChecker = (id, patients) => {
   }
 
   if (duplicateCheck(patients, id)) {
-    return `Patient ${ id } is already in use.`
+    return `${type} ${ id } is already in use.`
   }
 
   return false;

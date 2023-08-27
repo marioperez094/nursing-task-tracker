@@ -5,6 +5,8 @@ import React from 'react';
 import SettingsModal from './SettingsModal';
 import PatientCreator from './PatientCreator';
 import RemovePatient from './RemovePatient';
+import TaskHour from './TaskHour';
+import TaskCreator from './TaskCreator'
 
 //Functions
 import { useModalContext } from '../../context/ModalContext';
@@ -22,6 +24,10 @@ const ModalWindow = () => {
         return <PatientCreator />
       case 'removePatient':
         return <RemovePatient />
+      case 'taskHour':
+        return <TaskHour />
+      case 'addTask':
+        return <TaskCreator />
     }
   }
 

@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <main className='container-fluid shadow-lg p-3 my-3 bg-body rounded'>
-        <section>
+        <section className='patient-list-holder'>
           { patients.length > 0 
             ? patients.map((patient) => {
               return (

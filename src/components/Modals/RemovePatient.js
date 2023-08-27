@@ -6,7 +6,7 @@ import { useModalContext } from '../../context/ModalContext';
 import { usePatientsContext } from '../../context/PatientsContext'
 
 const RemovePatient = (props) => {
-  const { modal, patientID, setModal } = useModalContext();
+  const { patientID, setModal } = useModalContext();
   const { patients, setPatients } = usePatientsContext();
 
   const patientRemove = (id) => {
