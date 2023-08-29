@@ -1,37 +1,29 @@
 //External Imports
 import React from 'react';
 
-
 //Components
-import PatientList from '../../components/PatientList/PatientList';
+import SideBar from '../../components/SideBar/SideBar';
 
-//Functions
+//Functions 
 import { usePatientsContext } from '../../context/PatientsContext'
 
 //Style Import
 import './Home.css'
 
-const Home = () => {
+function Home (props) {
   const { patients } = usePatientsContext();
+  const { aside } = props;
 
   return (
-    <>
-      <main className='container-fluid shadow-lg p-3 my-3 bg-body rounded'>
-        <section className='patient-list-holder'>
-          { patients.length > 0 
-            ? patients.map((patient) => {
-              return (
-                <PatientList
-                  key={ patient.id }
-                  patient={ patient }
-                />
-              )
-            })
-            : <div className='text-center'><h2>No patients on patient list</h2></div>
-          }
-        </section>
-      </main>
-    </>
+    <div className='container-fluid'>
+      <div className='row w-100'>
+        <SideBar aside={ aside } />
+
+        <main className={ `col-${ aside ? '9' : '12 slide' } col-sm-${ aside ? '10' : '12' }` }>
+          Patients: { patients.length }
+        </main>
+      </div>
+    </div>
   )
 }
 

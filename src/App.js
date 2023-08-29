@@ -1,43 +1,29 @@
 //External Imports
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 //Components
-import Layout from './components/Layout/Layout';
+import Navbar from './components/Navbar/Navbar';
 import Home from './Pages/Home/Home';
-import ModalWindow from './components/Modals/ModalWindow';
 
 //Functions
-import { useModalContext } from './context/ModalContext';
 
 //Style Import
 import './App.css'
 
-function Patient ()  {
-
-  return (
-    <>
-      <div>Patient</div>
-    </>
-  )
-}
-
 function App() {
-  const { modal } = useModalContext();
+  const [aside, setAside] = useState(true);
 
   return (
     <>
       <Router>
-        <Layout>
+        <div id='page-container'>
+          <Navbar aside={ aside } setAside={ setAside } />
           <Routes>
-            <Route path='/' element ={ <Home />} />
-            <Route path='/patient/:patientId' element={ <Patient /> }/>
-          </Routes>          
-        </Layout>
+            <Route path='/' element={ <Home aside={ aside } />} />
+          </Routes>
+          </div>
       </Router>
-      { modal !== 'false' &&
-        <ModalWindow />
-      }
     </>
   )
 }

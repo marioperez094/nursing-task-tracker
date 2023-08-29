@@ -1,0 +1,105 @@
+aside {
+  height: 100vh;
+  animation-name: slide-right;
+  animation-duration: 0.1s;
+}
+
+.slide-left {
+  animation-name: slide-left;
+  animation-duration: 0.1s;
+  display: none;
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: -25%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: 0%;
+    display: block;
+  }
+
+  to {
+    margin-left: -25%;
+  }
+}
+
+@media (min-width: 541px) {
+  @keyframes slide-right {
+    from {
+      margin-left: -8.4%;
+    }
+  
+    to {
+      margin-left: 0%;
+    }
+  }
+  
+  @keyframes slide-left {
+    from {
+      margin-left: 0%;
+      display: block;
+    }
+  
+    to {
+      margin-left: -8.4%;
+    }
+  }
+}
+
+
+aside {
+  max-height: 86vh;
+  border-radius: 0 0 25px 0;
+}
+
+aside .blue-layout, aside .purple-layout {
+  max-width: 100px;
+}
+
+.btn-border {
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  max-width: 55px;
+  position: fixed;
+  left: 1vw;
+  bottom: 20px;
+  width: 100%;
+}
+
+#btn-settings, #btn-add-patient {
+  height: 45px;
+  width: 45px; 
+}
+
+#btn-settings:active, #btn-add-patient:active {
+  border: 5px solid black;
+  color: white;
+}
+
+#btn-settings {
+  color: #808080;
+}
+
+#btn-add-patient {
+  color: #198754
+}
+
+#btn-settings:active {
+  background-color: #808080;
+}
+
+#btn-add-patient:active {
+  background-color: #198754;
+}
+
+.icon-settings, .icon-add-patient {
+  height: 25px;
+}
+

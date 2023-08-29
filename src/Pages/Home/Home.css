@@ -1,3 +1,7 @@
-.patient-list-holder {
-  overflow-x: hidden;
+main {
+  background-color: white;
+}
+
+.slide {
+  transition: 0.1s ease-in-out;
 }

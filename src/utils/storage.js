@@ -4,7 +4,7 @@ const storage = (name, unChanged) => {
   if (name === 'NTTpatients') {
     local = JSON.parse(local);
   }
-  
+
   if (local) {
     return local;
   }

@@ -12,14 +12,22 @@ const DisplayDate = () => {
   const { date, setDate } = useDateContext();
 
   useEffect(() => {
-    let timer = setInterval(() => { setDate(currentDate)}, 1000)
+    let timer = setInterval(() => { setDate(currentDate) }, 1000)
     return function () { clearInterval(timer); }
   }, []);
 
   return (
-    <div className='text-end text-md-center display-date'>
-      <h2>{date[3]}:{date[4]}:{date[5]}</h2>
-      <h4>{date[0]}/{date[1]}/{date[2]}</h4>
+    <div className='row text-white display-date'>
+      <div className='col-12 pt-1'>
+        <h3>
+          {date[0]}/{date[1]}/{date[2]}
+        </h3>
+      </div>
+      <div className='col-12'>
+        <h5>
+          {date[3]}:{date[4]}:{date[5]}
+        </h5>
+      </div>
     </div>
   )
 }
