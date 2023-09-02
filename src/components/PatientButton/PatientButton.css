@@ -1,4 +1,24 @@
 .btn-sb-active {
   background-color: white;
   border-radius: 25px 0 0 25px;
+ 
+}
+
+.btn-sb {
+  text-align: center;
+}
+
+.btn-pt, .btn-pt-active {
+  height: 50px;
+  width: 50px;
+}
+
+.btn-pt {
+  background-color: white !important;
+}
+
+.btn-blue {
+  background-color: #87bdf3;
+  border: 2px solid black !important;
+  color: white !important;
 }

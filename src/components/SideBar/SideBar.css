@@ -2,6 +2,10 @@ aside {
   overflow-y: clip;
 }
 
+.slide-down, .slide-up {
+  border-radius: 0px 0px 10px 0;
+}
+
 .slide-down {
   height: 2000px;
   overflow-y: clip;
