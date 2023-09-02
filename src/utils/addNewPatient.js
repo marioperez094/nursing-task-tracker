@@ -1,5 +1,5 @@
-import taskIntoArray from "./taskIntoArray";
-import tasks from './tasks'
+import { tasks, restraintsDoc, admissionDoc } from './tasks'
+import taskIntoArray from './taskIntoArray'
 
 const addNewPatient = (newPatient, currentShift, date) => {
   const {
@@ -14,48 +14,64 @@ const addNewPatient = (newPatient, currentShift, date) => {
 
   let patient = {
     id: id,
-    tasks: [],
-  };
+    patientTasks: [],
+  }
 
-  patient.tasks.push(...taskIntoArray(tasks[status], id, currentShift));
+  
+  let staticTasks = Object.keys(tasks).map((task) => tasks[task]);
+
+  let statusTasks = staticTasks.filter((task) => task.status);
 
   if (parseFloat(neuro) === 8) {
-    delete tasks['neuro'][0].frequency;
-    tasks['neuro'][0].times = [8, 16, 20, 4];
+    delete tasks.neuro.frequency;
+    tasks.neuro.times = [8, 16, 20, 4]
   }
   else {
-    tasks['neuro'][0].frequency = parseFloat(neuro);
+    tasks.neuro.frequency = parseFloat(neuro);
+  };
+
+
+  if (status === 'icu') {
+    statusTasks.forEach((task) => task.frequency = 1);
   }
 
-  patient.tasks.push(...taskIntoArray(tasks['neuro'], id, currentShift));
-
+  if (status === 'medSurg') {
+    statusTasks.forEach((task) => task.frequency = 8);
+  }
+  
   if (pain) {
-    tasks['pain'][0].frequency = 1;
-  }
-  patient.tasks.push(...taskIntoArray(tasks['pain'], id, currentShift));
+    tasks.pain.frequency = 1;
+  };
 
-  if (sedation) {
-    tasks['rass'][0].frequency = 1;
-  }
-  patient.tasks.push(...taskIntoArray(tasks['rass'], id, currentShift));
+  if (sedation) { 
+    tasks.rass.frequency = 1;
+  };
+
+  patient.patientTasks.push(...taskIntoArray(staticTasks, id, currentShift));
 
   if (restraints) {
-    patient.tasks.push(...taskIntoArray(tasks['restraints'], id, currentShift));
+    let restrained = Object.keys(restraintsDoc).map((task) => restraintsDoc[task]);
+
+    patient.patientTasks.push(...taskIntoArray(restrained, id, currentShift));
   }
 
-  patient.tasks.push(...taskIntoArray(tasks['allTasks'], id, currentShift));
-
   if (admission) {
-    let admissionTasks = tasks['admission'].map((task) => {
+    let addmission = Object.keys(admissionDoc).map((task) => {
       return ({
-        name: task.name,
-        type: task.type,
+        name: admissionDoc[task].name,
+        type: admissionDoc[task].type,
         times: [date[3]]
       });
     });
-    patient.tasks.push(...taskIntoArray(admissionTasks, id, currentShift));
-  };
 
+    patient.patientTasks.push(...taskIntoArray(addmission, id, currentShift));
+  }
+
+  tasks.pain.frequency = 4;
+  tasks.rass.frequency = 4;
+  statusTasks.forEach((task) => task.frequency = 4);
+
+  
   return patient;
 }
 

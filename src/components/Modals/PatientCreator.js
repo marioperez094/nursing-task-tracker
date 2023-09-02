@@ -11,7 +11,7 @@ import { usePatientsContext } from '../../context/PatientsContext'
 import { useModalContext } from '../../context/ModalContext';
 import { useDateContext } from '../../context/DateContext'
 import { titleCheck, duplicateCheck } from '../../utils/newItemChecker';
-import addNewPatient from '../../utils/addNewPatient';
+import addNewPatient from '../../utils/addNewPatient'
 
 function PatientCreator () {
   const { patients, setPatients } = usePatientsContext();
@@ -26,10 +26,11 @@ function PatientCreator () {
     restraints: false,
     sedation: false,
     pain: false,
-    neuro: 1,
+    neuro: 4,
   })
   const { id, status, admission, restraints, sedation, pain, neuro } = newPatient;
 
+  //Input States
   const changePatientAttributes = (e) => {
     let attribute = e.target.getAttribute('data-attribute');
     let property;
@@ -45,6 +46,7 @@ function PatientCreator () {
     setCheck('')
   };
 
+  //Add a patient
   const addPatient = (e, modalState) => {
     e.preventDefault();
     let title = document.getElementById('title')
@@ -61,8 +63,6 @@ function PatientCreator () {
 
     let patientList = [...patients, addNewPatient(newPatient, currentShift, date)];
 
-
-    console.log(patientList)
     let resetPatient = {
       id: '',
       status: 'icu',
@@ -70,11 +70,15 @@ function PatientCreator () {
       restraints: false,
       sedation: false,
       pain: false,
-      neuro: 1,
+      neuro: 4,
     };
 
+    console.log(patientList)
+
+    localStorage.setItem('NTTpatients', JSON.stringify(patientList))
+    setPatients(patientList);
     setNewPatient(resetPatient);
-    console.log(newPatient);
+    setModal(modalState);
   };
 
   return (
@@ -109,8 +113,8 @@ function PatientCreator () {
             onChange={ (e) => changePatientAttributes(e) }
           >
             <option value='icu'>ICU</option>
-            <option value='medSurg'>Medical/Surgical</option>
             <option value='tele'>Telemetry</option>
+            <option value='medSurg'>Medical/Surgical</option>
           </select>
         </InputTemplate>
 
@@ -129,7 +133,7 @@ function PatientCreator () {
         </InputTemplate>
 
         <div className='mt-5 mb-3 row'>
-          <div className='col-12 col-md-6 ps-md-5 text-start'>
+          <div className='col-12 col-sm-6 text-start'>
             <input
               type='checkbox'
               data-attribute='admission'
@@ -143,7 +147,7 @@ function PatientCreator () {
             </label>
           </div>
 
-          <div className='col-12 col-md-6 text-start'>
+          <div className='col-12 col-sm-6 text-start'>
             <input
               type='checkbox'
               data-attribute='restraints'
@@ -157,7 +161,7 @@ function PatientCreator () {
             </label>
           </div>
 
-          <div className='col-12 col-md-6 ps-md-5 text-start'>
+          <div className='col-12 col-sm-6 text-start'>
             <input
               type='checkbox'
               data-attribute='sedation'
@@ -171,7 +175,7 @@ function PatientCreator () {
             </label>
           </div>
 
-          <div className='col-12 col-md-6 text-start'>
+          <div className='col-12 col-sm-6 text-start'>
             <input
               type='checkbox'
               data-attribute='pain'

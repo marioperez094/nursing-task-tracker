@@ -1,6 +1,6 @@
 .aside-true, .aside-false {
   min-height: 1vh;
-  transition-delay: 0.5s
+  transition-delay: 0.75s
 }
 
 .aside-true {
@@ -10,7 +10,7 @@
 
 .aside-false {
   border-radius: 0 0 10px 10px;
-  transition-delay: 0.25s;
+  transition-delay: 0.5s;
 }
 
 #btn-navbar {

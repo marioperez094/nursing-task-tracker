@@ -11,7 +11,6 @@ import './Home.css'
 
 function Home (props) {
   const { patients } = usePatientsContext();
-  const { aside } = props;
 
   return (
     <div className='row'>

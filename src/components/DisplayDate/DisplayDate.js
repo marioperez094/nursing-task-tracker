@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 
 //Functions
 import { useDateContext } from '../../context/DateContext';
-import { useThemeContext } from '../../context/ThemeContext';
 
 import currentDate from '../../utils/currentDate';
 
@@ -12,7 +11,6 @@ import './DisplayDate.css'
 
 const DisplayDate = () => {
   const { date, setDate } = useDateContext();
-  const { theme } = useThemeContext();
 
   useEffect(() => {
     let timer = setInterval(() => { setDate(currentDate) }, 1000)

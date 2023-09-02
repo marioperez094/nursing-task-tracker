@@ -1,250 +1,226 @@
 const tasks = {
-  'icu': [{
-    name: 'Vitals',
-    type: 'chart',
-    frequency: 1
-  },
-  {
-    name: 'Intake',
-    type: 'chart',
-    frequency: 1
-  },
-  {
-    name: 'Output',
-    type: 'chart',
-    frequency: 1
-  },
-  {
-    name: 'Tube Feeds',
-    type: 'chart',
-    frequency: 1
-  },
-  {
-    name: 'Turn/Reposition',
-    type: 'chart',
-    frequency: 2
-  },
-  {
-    name: 'Oral care',
-    type: 'chart',
-    frequency: 2
-  }],
-  'tele': [{
-    name: 'Vitals',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'Intake',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'Output',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'Turn/Reposition',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'Oral care',
-    type: 'chart',
-    frequency: 4
-  }],
-  'medSurg': [{
-    name: 'Vitals',
-    type: 'chart',
-    times: [8, 16, 20, 4]
-  },
-  {
-    name: 'Intake',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'Output',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'Turn/Reposition',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'Oral care',
-    type: 'chart',
-    frequency: 4
-  }],
-  'allTasks': [{
+  temperature : {
     name: 'Temperature',
     type: 'chart',
-    frequency: 4
+    frequency: 4,
+    status: false
   },
-  {
-    name: 'Assessment',
+  vitals : {
+    name: 'Vitals',
     type: 'chart',
-    frequency: 4
+    frequency: 4,
+    status: true
   },
-  {
-    name: 'Lines',
+  rass: {
+    name: 'RASS',
     type: 'chart',
-    frequency: 4
+    frequency: 4,
+    status: false
   },
-  {
-    name: 'Tubes',
+  camICU: {
+    name: 'CAM ICU',
     type: 'chart',
-    frequency: 4
+    times: [8, 20],
+    status: false
   },
-  {
-    name: 'Drains',
+  pain: {
+    name: 'Pain',
     type: 'chart',
-    frequency: 4
+    frequency: 4,
+    status: false
   },
-  {
-    name: 'ADLs',
-    type: 'chart',
-    frequency: 4
-  },
-  {
-    name: 'AdHoc Shift Screen',
-    type: 'chart',
-    times: [8, 20]
-  },
-  {
-    name: 'AdHoc Order Entry',
-    type: 'chart',
-    times: [8, 20]
-  },
-  {
-    name: 'ABCDEF Bundle',
-    type: 'chart',
-    times: [8, 20]
-  },
-  {
-    name: 'Sedation Vacation',
-    type: 'chart',
-    times: [8, 20]
-  },
-  {
-    name: 'Plan of Care',
-    type: 'chart',
-    times: [5, 17]
-  },
-  {
-    name: 'Chart Check',
-    type: 'chart',
-    times: [5, 17]
-  },
-  {
+  nihss: {
     name: 'NIHSS',
     type: 'chart',
-    times: [19, 7]
+    times: [7, 19],
+    status: false
   },
-  {
+  turns: {
+    name: 'Turn and Reposition',
+    type: 'chart',
+    frequency: 4,
+    status: true
+  },
+  oralCare: {
+    name: 'Oral care',
+    type: 'chart',
+    frequency: 4,
+    status: true
+  },
+  adls: {
+    name: 'ADLs',
+    type: 'chart',
+    frequency: 4,
+    status: false
+  },
+  neuro: {
+    name: 'Neuro',
+    type: 'chart',
+    frequency: 4,
+    status: false
+  },
+  assessment: {
+    name: 'Assessment',
+    type: 'chart',
+    frequency: 4,
+    status: false
+  },
+  tubesDrains: {
+    name: 'Tubes and Drains',
+    type: 'chart',
+    frequency: 4,
+    status: false
+  },
+  lines: {
+    name: 'Lines',
+    type: 'chart',
+    frequency: 4,
+    status: false
+    },
+  intake: {
+    name: 'Intake',
+    type: 'chart',
+    frequency: 4,
+    status: true
+  },
+  output: {
+    name: 'Output',
+    type: 'chart',
+    frequency: 4,
+    status: true
+  },
+  shiftScreen: {
+    name: 'AdHoc Shift Screen',
+    type: 'chart',
+    times: [8, 20],
+    status: false
+  },
+  orderEntry: {
+    name: 'AdHoc Order Entry',
+    type: 'chart',
+    times: [8, 20],
+    status: false
+  },
+  abcdefBundle: {
+    name: 'ABCDEF Bundle',
+    type: 'chart',
+    times: [8, 20],
+    status: false
+  },
+  sat: {
+    name: 'Spontaneous Awakening Trial',
+    type: 'chart',
+    times: [8, 20],
+    status: false
+  },
+  planOfCare: {
+    name: 'Plan of Care',
+    type: 'chart',
+    times: [5, 17],
+    status: false
+  },
+  chartCheck: {
+    name: 'Chart Check',
+    type: 'chart',
+    times: [5, 17],
+    status: false
+  },
+  foleyCare: {
     name: 'Foley Care',
     type: 'chart',
-    times: [8, 20]
+    times: [8, 20],
+    status: false
   },
-  {
-    name: 'CHG Bath',
+  bath: {
+    name: 'Bath',
     type: 'chart',
-    times: [6, 18]
+    times: [8, 20],
+    status: false
   },
-  {
+  weight: {
     name: 'Weight',
     type: 'chart',
-    times: [6, 18]
-  }],
+    times: [6, 18],
+    status: false
+  },
+}
 
-  'admission': [{
+const restraintsDoc = {
+  renewRestraints: {
+    name: 'Renew Restraints',
+    type: 'chart',
+    times: [12, 0],
+    status: false,
+  },
+  restraints: {
+    name: 'Restraints',
+    type: 'chart',
+    frequency: 2,
+    status: false
+  },
+}
+
+const admissionDoc = {
+  notificationAdmitting: {
     name: 'Notification to Admitting',
     type: 'chart',
   },
-  {
+  notifyProvider: {
     name: 'Notify Provider',
     type: 'chart',
   },
-  {
+  associateMonitor: {
     name: 'Associate Patient Monitor',
     type: 'chart',
   },
-  {
+  vitals: {
     name: 'Temp, VS, Height, Weight, and Glucose',
     type: 'chart',
   },
-  {
+  skin: {
     name: 'CHG, 2 RN Skin Check',
     type: 'chart',
   },
-  {
+  admissionHx: {
     name: 'AdHoc - Adult Admission History',
     type: 'chart',
   },
-  {
+  orderEntry: {
     name: 'AdHoc - Order Entry',
     type: 'chart',
   },
-  {
+  shiftScreen: {
     name: 'AdHoc - Shift Screen',
     type: 'chart',
   },
-  {
-    name: 'AdHoc - Valuables/Belongings',
+  valuables: {
+    name: 'AdHoc - Valuables and Belongings',
     type: 'chart',
   },
-  {
+  swallowScreen: {
     name: 'AdHoc - ED - Swallow Screen for Dysphagia',
     type: 'chart',
   },
-  {
+  pawss: {
     name: 'AdHoc- PAWSS (if ETOH)',
     type: 'chart',
   },
-  {
+  homeMeds: {
     name: 'Home Meds and Patient Pharm',
     type: 'chart',
   },
-  {
+  ptEd: {
     name: 'Patient Education',
     type: 'chart',
   },
-  {
+  carePlans: {
     name: 'Care Plans',
     type: 'chart',
   },
-  {
+  inform: {
     name: 'Inform patient family, Room Number, Unit number, Patient PIN',
     type: 'chart',
-  }],
-  'restraints': [{
-    name: 'Restraints',
-    type: 'chart',
-    frequency: 2
-  },
-  {
-    name: 'Renew Restraints',
-    type: 'chart',
-    times: [0, 12]
-  }],
-  'pain': [{
-    name: 'Pain',
-    type: 'chart',
-    frequency: 4
-  }],
-  'rass': [{
-    name: 'RASS',
-    type: 'chart',
-    frequency: 4
-  }],
-  'neuro': [{
-    name: 'Neuro',
-    type: 'chart',
-    frequency: 4
-  }]
+  }
 }
 
-export default tasks;
+export { tasks, restraintsDoc, admissionDoc };

@@ -1,36 +1,33 @@
+aside {
+  overflow-y: clip;
+}
+
 .slide-down {
-  height: 99vh;
+  height: 2000px;
+  overflow-y: clip;
   animation-name: slide-down;
-  animation-duration: 0.25s;
+  animation-duration: 0.5s;
   display: flex;
 }
 
 .slide-up {
   animation-name: slide-up;
-  animation-duration: 0.25s;
+  animation-duration: 0.5s;
   display: none;
-}
-
-.btn-sb-appear {
-  animation-name: appear;
-  animation-duration: 0.8s;
-}
-
-aside .blue-primary, aside .purple-primary {
-  height: 100%;;
-  border-radius: 0px 0px 10px 0;
-  width: 80px;
 }
 
 @keyframes slide-down {
   from {
     height: 0px;
   }
+  to {
+    height: 120vh;
+  }
 }
 
 @keyframes slide-up {
   from {
-    height: 86vh;
+    height: 120vh;
     display: flex;
   }
   to {
@@ -38,26 +35,14 @@ aside .blue-primary, aside .purple-primary {
   }
 }
 
-@keyframes appear {
-  0% {
-    display: none;
-  }
-  50% {
-    display: none;
-  }
-  100% {
-    display: inherit;
-  }
-}
-
 .sidebar .col-12, .sidebar .col-xl-12 {
   transition-delay: 10s;
 }
 
-.bottom-buttons {
+.default-buttons {
   border-top: 2px solid rgba(255, 255, 255, 0.4);
-  position: fixed;
-  bottom: 10px;
+  position: sticky;
+  bottom: 0px;
 }
 
 #btn-settings {

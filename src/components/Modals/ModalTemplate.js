@@ -9,7 +9,7 @@ import { useThemeContext } from '../../context/ThemeContext'
 import './Modals.css'
 
 const ModalTemplate = (props) => {
-  const { title, shake } = props
+  const { title } = props
   const { theme } = useThemeContext();
   const { setModal } = useModalContext();
 
