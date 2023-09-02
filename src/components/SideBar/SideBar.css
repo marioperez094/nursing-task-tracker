@@ -1,105 +1,95 @@
-aside {
-  height: 100vh;
-  animation-name: slide-right;
-  animation-duration: 0.1s;
+.slide-down {
+  height: 99vh;
+  animation-name: slide-down;
+  animation-duration: 0.25s;
+  display: flex;
 }
 
-.slide-left {
-  animation-name: slide-left;
-  animation-duration: 0.1s;
+.slide-up {
+  animation-name: slide-up;
+  animation-duration: 0.25s;
   display: none;
 }
 
-@keyframes slide-right {
+.btn-sb-appear {
+  animation-name: appear;
+  animation-duration: 0.8s;
+}
+
+aside .blue-primary, aside .purple-primary {
+  height: 100%;;
+  border-radius: 0px 0px 10px 0;
+  width: 80px;
+}
+
+@keyframes slide-down {
   from {
-    margin-left: -25%;
-  }
-
-  to {
-    margin-left: 0%;
+    height: 0px;
   }
 }
 
-@keyframes slide-left {
+@keyframes slide-up {
   from {
-    margin-left: 0%;
-    display: block;
+    height: 86vh;
+    display: flex;
   }
-
   to {
-    margin-left: -25%;
+    height: 0px;
   }
 }
 
-@media (min-width: 541px) {
-  @keyframes slide-right {
-    from {
-      margin-left: -8.4%;
-    }
-  
-    to {
-      margin-left: 0%;
-    }
+@keyframes appear {
+  0% {
+    display: none;
   }
-  
-  @keyframes slide-left {
-    from {
-      margin-left: 0%;
-      display: block;
-    }
-  
-    to {
-      margin-left: -8.4%;
-    }
+  50% {
+    display: none;
+  }
+  100% {
+    display: inherit;
   }
 }
 
-
-aside {
-  max-height: 86vh;
-  border-radius: 0 0 25px 0;
+.sidebar .col-12, .sidebar .col-xl-12 {
+  transition-delay: 10s;
 }
 
-aside .blue-layout, aside .purple-layout {
-  max-width: 100px;
-}
-
-.btn-border {
+.bottom-buttons {
   border-top: 2px solid rgba(255, 255, 255, 0.4);
-  max-width: 55px;
   position: fixed;
-  left: 1vw;
-  bottom: 20px;
-  width: 100%;
-}
-
-#btn-settings, #btn-add-patient {
-  height: 45px;
-  width: 45px; 
-}
-
-#btn-settings:active, #btn-add-patient:active {
-  border: 5px solid black;
-  color: white;
+  bottom: 10px;
 }
 
 #btn-settings {
-  color: #808080;
-}
-
-#btn-add-patient {
-  color: #198754
+  border-color: #6f6f6f;
+  width: 50px;
+  height: 50px;
+  color: #6f6f6f;
 }
 
 #btn-settings:active {
-  background-color: #808080;
+  border: 5px solid black;
+  background: #6f6f6f;
+  color: white;
 }
 
-#btn-add-patient:active {
-  background-color: #198754;
+.icon-settings {
+  font-size: 25px;
 }
 
-.icon-settings, .icon-add-patient {
-  height: 25px;
+#btn-addPatient {
+  border-color: #198754;
+  width: 50px;
+  height: 50px;
+  color: #198754;
 }
 
+#btn-addPatient:active {
+  border: 5px solid black;
+  background: #198754;
+  color: white;
+}
+
+.icon-addPatient {
+  font-size: 25px;
+}

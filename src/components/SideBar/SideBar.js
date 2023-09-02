@@ -4,45 +4,64 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
 //Components
+import SidebarButton from '../SidebarButton/SidebarButton'
 
 //Functions
-import { useThemeContext } from '../../context/ThemeContext'
+import { useThemeContext } from '../../context/ThemeContext';
+import { useModalContext } from '../../context/ModalContext';
+import { useDateContext } from '../../context/DateContext'
 
 //Style Import
 import './SideBar.css'
+
 function SideBar (props) {
   const { theme } = useThemeContext();
+  const { shift } = useDateContext();
+  const { setModal } = useModalContext();
   const { aside } = props;
 
   return (
-    <aside className={`col-2 col-md-1 ${ aside ? '' : 'slide-left' }`}>
-      <div className='row h-100'>
-        <div className={`col-12 d-flex align-items-end ${ theme }-layout h-100` }>
-          <div className='btn-border pt-3 ms-n1'>
-            <div>
-              <button
-                className='btn-circular' id='btn-settings'
-              >
-                <FontAwesomeIcon
-                  className='icon-settings'
-                  icon={ faGear }
-                />
-              </button>
-            </div>
-            <div className='pt-3'>
-              <button
-                className='btn-circular' id='btn-add-patient'
-              >
-                <FontAwesomeIcon
-                  className='icon-add-patient'
-                  icon={ faUserPlus }
-                />
-              </button>
+    <div className='container-fluid'>
+      <div className='row sidebar'>
+        <aside className={ `col-2 col-md-1 p-0 ${ aside ? 'slide-down' : 'slide-up' }` }>
+          <div className={`${ theme }-primary`}>
+            <div className={`${ aside ? 'btn-sb-appear' : 'd-none' }`}>
+              <div className='bottom-buttons pt-3 ms-2 ms-lg-3 text-center'>
+                <div>
+                  <h5>{ shift }</h5>
+                  <h5>Shift</h5>
+                </div>
+                <div>
+                  <button
+                    className='btn-circular' id='btn-settings'
+                    onClick={() => setModal('settings')}
+                  >
+                    <FontAwesomeIcon
+                      className='icon-settings'
+                      icon={ faGear }
+                    />
+                  </button>
+                </div>
+                <div className='mt-3'>
+                  <button
+                    className='btn-circular' id='btn-addPatient'
+                    onClick={() => setModal('addPatient')}
+                  >
+                    <FontAwesomeIcon
+                      className='icon-addPatient'
+                      icon={ faUserPlus }
+                    />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </aside>
+        <main className={`col-${aside ? '10' : '12'} col-md-${aside ? '11' : '12' }` }>
+          { props.children }
+        </main>
       </div>
-    </aside>
+    </div>
   )
 }
 

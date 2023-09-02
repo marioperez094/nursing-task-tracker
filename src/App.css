@@ -1,11 +1,9 @@
-.purple-layout {
+.purple-primary {
   background-color: #B195D2;
-  transition: 1s;
 }
 
-.blue-layout {
-  background-color: #A7C7E7;
-  transition: 1s;
+.blue-primary {
+  background-color: #87bdf3;
 }
 
 .btn-circular {
@@ -17,6 +15,5 @@
 }
 
 .btn-circular:active {
-  border: 5px solid black;
   transition: 0.1s;
 }

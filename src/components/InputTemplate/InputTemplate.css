@@ -1,0 +1,7 @@
+.input-margin {
+  margin-top: 6%;
+}
+
+.input-margin:first-child {
+  margin-top: 0;
+}

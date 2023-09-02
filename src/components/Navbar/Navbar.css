@@ -1,35 +1,41 @@
-.navbar {
-  padding: 0;
+.aside-true, .aside-false {
+  min-height: 1vh;
+  transition-delay: 0.5s
 }
 
-.navbar .container-fluid {
-  border-radius: 0 0 25px 0;
-  min-height: 14vh;
+.aside-true {
+  border-radius: 0 0 10px 0;
+  transition-delay: 0s;
 }
 
-.brand {
-  color: inherit;
-  text-decoration: none;
+.aside-false {
+  border-radius: 0 0 10px 10px;
+  transition-delay: 0.25s;
 }
 
 #btn-navbar {
-  height: 60px;
-  border-color: transparent;
+  border-color: #6f6f6f;
+  width: 50px;
+  height: 50px;
+  color: #6f6f6f;
 }
 
-#btn-navbar:active {
-  border-color: inherit;
-}
-
-.icon-navbar {
-  height: 35px;
-  color: #808080;
-}
-
-.icon-navbar:active {
+#btn-navbar:active{
+  border: 5px solid black;
+  background: #6f6f6f;
   color: white;
 }
 
-aside {
-  height: 100vh;
+.icon-navbar {
+  font-size: 25px;
+}
+
+.blue-font {
+  color: #87bdf3;
+  transition: 1s;
+}
+
+.purple-font {
+  background-color: #B195D2;
+  transition: 1s;
 }
