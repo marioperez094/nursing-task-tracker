@@ -7,7 +7,6 @@ aside {
 }
 
 .slide-down {
-  height: 2000px;
   overflow-y: clip;
   animation-name: slide-down;
   animation-duration: 0.5s;
@@ -40,7 +39,11 @@ aside {
 }
 
 .sidebar .col-12, .sidebar .col-xl-12 {
-  transition-delay: 10s;
+  transition-delay: 0.5s;
+}
+
+.btn-sb-home {
+  margin-bottom: 12px;
 }
 
 .default-buttons {

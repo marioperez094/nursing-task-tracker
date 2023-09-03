@@ -61,6 +61,11 @@ function PatientCreator () {
       return setCheck('duplicate')
     }
 
+    if(patients.length > 9) {
+      title.focus();
+      return setCheck('limit')
+    }
+
     let patientList = [...patients, addNewPatient(newPatient, currentShift, date)];
 
     let resetPatient = {
@@ -86,6 +91,11 @@ function PatientCreator () {
       title={ 'Add a new patient' }
     >
       <form className='text-center'>
+
+        
+        <div>
+          {check === 'limit' && <p className='warning-text'>*Maximum patient limit is 10.</p>}
+        </div>
 
         <InputTemplate inputLabel='Patient Room Number:'>
           <input

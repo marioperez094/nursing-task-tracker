@@ -1,7 +1,7 @@
 //External Imports
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faGear, faUserPlus, faHouse } from '@fortawesome/free-solid-svg-icons'
 
 //Components
 import PatientButton from '../PatientButton/PatientButton'
@@ -23,6 +23,8 @@ function SideBar (props) {
 
   const { aside } = props;
 
+  const [buttonID, setButtonID] = useState('home');
+
 
 
   return (
@@ -32,23 +34,37 @@ function SideBar (props) {
         <div className={`${ theme }-primary w-100`}>
             <div className='patient-buttons pt-3'>
 
-              <div className={ `mb-4 ${ patientID === 'home' ? 'btn-sb-active' : 'btn-sb ' + theme + '-primary' }` }>
-                <button
-                  className={`btn-circular ${ patientID === 'home' ? 'btn-pt-active ' + 'btn-' + theme : 'btn-pt' }`}
-                  onClick={ () => setPatientID('home') }
-                >
-                  <FontAwesomeIcon
-                    className='icon-addPatient'
-                    icon={faUserPlus}
-                  />
-                </button>
+              <div className={`${ buttonID === 'home' ? 'btn-holder' : null } btn-sb-home`}>
+                <div className={ `${ theme }-top` }>
+                </div>
+
+                <div className={`${ buttonID === 'home' ? 'btn-holder justify-content-start' : 'justify-content-center' } d-flex align-items-center`}>
+
+                  <button 
+                    className={ `${ buttonID === 'home' ? 'btn-pt-' + theme + '-active' : 'btn-pt' } btn-circular` }
+                    onClick={() => {
+                      setButtonID('home')
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      className='btn-addPatient'
+                      icon={ faHouse }
+                    />
+                  </button>
+
+                </div>
+                <div className={ `${ theme }-bottom` }>
+                </div>
               </div>
 
               { patients.length > 0 
                 ? patients.map((patient) => {
                   return (
                     <PatientButton
-                      id={ patient.id } 
+                      key={ patient.id }
+                      id={ patient.id }
+                      buttonID={ buttonID }
+                      setButtonID={ setButtonID }
                     />
                   )
                 })
@@ -56,7 +72,7 @@ function SideBar (props) {
               }
             </div>
 
-            <div className={ `default-buttons ${ theme }-primary text-center pt-3 mt-3` }>
+            <div className={ `default-buttons ${ theme }-primary text-center py-3 mt-3` }>
               <div>
                 <h5>{ shift }</h5>
                 <h5>Shift</h5>
