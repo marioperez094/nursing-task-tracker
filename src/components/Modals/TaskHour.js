@@ -15,9 +15,9 @@ import { useThemeContext } from '../../context/ThemeContext';
 import filterTasks from '../../utils/filterTasks';
 
 function TaskHour () {
-  const { patientID, type, setPatientID, setModal } = useModalContext();
+  const { patientID, type, setPatientID, setModal, hour } = useModalContext();
   const { patients, setPatients } = usePatientsContext();
-  const { date, currentShift } = useDateContext();
+  const { currentShift } = useDateContext();
   const { theme } = useThemeContext();
 
   const patient = patients.filter((patient) => {
@@ -25,7 +25,7 @@ function TaskHour () {
   });
   const { id, patientTasks } = patient[0];
 
-  const [currentHour, setCurrentHour] = useState(date[3])
+  const [currentHour, setCurrentHour] = useState(hour)
   const [currentTasks, setCurrentTasks] = useState(filterTasks(patientTasks, currentHour, currentShift))
   
   let typeTasks = {

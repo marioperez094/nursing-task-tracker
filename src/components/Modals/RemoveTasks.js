@@ -1,7 +1,11 @@
+//External Imports
 import React from 'react';
 
+//Internal Imports
 import ModalTemplate from './ModalTemplate';
 
+
+//Functions
 import { useModalContext } from '../../context/ModalContext';
 import { usePatientsContext } from '../../context/PatientsContext'
 

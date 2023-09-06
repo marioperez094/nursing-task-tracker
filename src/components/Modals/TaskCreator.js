@@ -15,7 +15,7 @@ import { useDateContext } from '../../context/DateContext';
 import taskIntoArray from '../../utils/taskIntoArray'
 
 function TaskCreator () {
-  const { patientID, setModal } = useModalContext();
+  const { patientID, setModal, setPatientID } = useModalContext();
   const { patients, setPatients } = usePatientsContext();
   const { currentShift } = useDateContext();
 
@@ -111,21 +111,6 @@ function TaskCreator () {
     setNewTask(resetNewTasks);
   }
 
-  const resetTasks = (e) => {
-    e.preventDefault();
-    let patientList = [...patients];
-    let tasks = patientList[patientIndex].patientTasks
-    tasks = tasks.map((task) => {
-      return { ...task, complete: false };
-    })
-
-    patientList[patientIndex].patientTasks = tasks;
-    
-    localStorage.setItem('NTTpatients', JSON.stringify(patientList));
-    setModal('false');
-    setPatients(patientList);
-  }
-
   return (
     <ModalTemplate
       title={ 'Add a task for Room# ' + id }
@@ -136,9 +121,12 @@ function TaskCreator () {
           <div className='col-12 text-center'>
           <button
             className='btn w-100 btn-success'
-            onClick={ (e) => resetTasks(e) }
+            onClick={ (e) => {
+              setModal('resetTasks');
+              setPatientID(id)
+            }}
           >
-            <h5><FontAwesomeIcon icon={ faCalendarPlus } /> <span>Set tasks to incomplete</span></h5>
+            <h5><FontAwesomeIcon icon={ faCalendarPlus } /> <span>Reset Tasks</span></h5>
           </button>
         </div>
 

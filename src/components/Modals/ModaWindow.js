@@ -7,10 +7,11 @@ import PatientCreator from './PatientCreator';
 import RemovePatient from './RemovePatient';
 import RemoveTasks from './RemoveTasks';
 import TaskCreator from './TaskCreator';
+import TaskHour from './TaskHour';
+import ResetTasks from './ResetTasks';
 
 //Functions
 import { useModalContext } from '../../context/ModalContext';
-import TaskHour from './TaskHour';
 
 //Style Import
 
@@ -31,6 +32,8 @@ const ModalWindow = () => {
         return <RemoveTasks />
       case 'addTask':
         return <TaskCreator />
+      case 'resetTasks':
+        return <ResetTasks />
     }
   }
 

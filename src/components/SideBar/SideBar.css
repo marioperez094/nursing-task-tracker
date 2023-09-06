@@ -69,6 +69,10 @@ aside {
   font-size: 25px;
 }
 
+.btn-home {
+  font-size: 25px;
+}
+
 #btn-addPatient {
   border-color: #198754;
   width: 50px;

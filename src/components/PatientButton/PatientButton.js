@@ -1,5 +1,6 @@
 //Functions
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useModalContext } from '../../context/ModalContext'
 import { useThemeContext } from '../../context/ThemeContext';
 
@@ -7,7 +8,6 @@ import { useThemeContext } from '../../context/ThemeContext';
 import './PatientButton.css'
 
 function PatientButton (props) {
-  const { patientID, setPatientID } = useModalContext();
   const { theme } = useThemeContext();
   const { id, buttonID, setButtonID } = props;
 
@@ -18,14 +18,18 @@ function PatientButton (props) {
 
       <div className={`${ buttonID === id ? 'btn-holder justify-content-start' : 'justify-content-center' } d-flex align-items-center`}>
 
-      <button 
-        className={ `${ buttonID === id ? 'btn-pt-' + theme + '-active' : 'btn-pt' } btn-circular` }
+      <Link
+          className={`${buttonID === id ? 'btn-pt-' + theme + '-active' : 'btn-pt' } btn-circular d-flex align-items-center justify-content-center btn-room` }
+        to={ `patient/${id}` }
         onClick={() => {
-          setButtonID(id)
+          setButtonID(id);
+          localStorage.setItem('NTTsb', id);
         }}
       >
-        <h5>{ id }</h5>
-      </button>
+        <h5>
+          { id }
+        </h5>
+      </Link>
 
       </div>
       <div className={ `${ theme }-bottom` }>

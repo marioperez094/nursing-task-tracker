@@ -37,3 +37,9 @@
   background-color: transparent;
   border-color: transparent;
 }
+
+.patient-info {
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+}

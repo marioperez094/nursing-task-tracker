@@ -1,5 +1,6 @@
 //External Imports
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,12 +17,13 @@ import filterTasks from '../../utils/filterTasks'
 import './PatientList.css';
 
 function PatientList (props) {
-  const { setModal, setPatientID, setType } = useModalContext();
+  const { setModal, setPatientID, setType, setHour } = useModalContext();
   const { date, currentShift } = useDateContext();
 
-  const { patient } = props;
+  const { patient, disable } = props;
   const { id, patientTasks } = patient;
 
+  console.log(disable)
   const filters = filterTasks(patientTasks, date[3], currentShift);
   const allTasks = filters.currentShift.filter((task) => task.complete === false);
   const hourTasks = filters.currentTasks.filter((task) => task.complete === false);
@@ -32,7 +34,8 @@ function PatientList (props) {
     <div className='row gx-0 mb-2 shadow-lg rounded'>
       <div className='col-2 col-sm-1'>
         <button 
-          className='btn-remove-pt'
+          className= 'btn-remove-pt'
+          disabled={ disable }
           onClick={() => {
             setModal('removePatient');
             setPatientID(id);
@@ -42,15 +45,18 @@ function PatientList (props) {
         </button>
       </div>
 
-      <div className='col-8 col-sm-10'>
+      <div className={ `col-8 col-sm-10` }>
         <div className='row'>
           <div className='col-12'>
-            <button 
-              className='btn-pt-room'>
-                <b className='d-none d-sm-inline'>Room #: { id } </b>
-                <b className='d-sm-none'>RM#: { id } </b>
-                | Tasks: { allTasks.length }
-              </button>
+            <div className='btn-pt-room text-center'>
+              <b className='d-none d-sm-inline'>
+                Room #: { id + ' ' }   
+              </b>
+              <b className='d-sm-none'>
+                RM#: { id + ' ' } 
+              </b>
+              | Tasks: { allTasks.length }
+            </div>
           </div>
         </div>
         <div className='row'>
@@ -62,6 +68,7 @@ function PatientList (props) {
                 className='btn-task-hour'
                 onClick={() => {
                   setModal('taskHour');
+                  setHour(date[3])
                   setPatientID(id);
                   setType('all')
                 }}
@@ -76,6 +83,7 @@ function PatientList (props) {
                 className='btn-task-hour'
                 onClick={() => {
                   setModal('taskHour');
+                  setHour(date[3]);
                   setPatientID(id);
                   setType('personal')
                 }}
@@ -90,6 +98,7 @@ function PatientList (props) {
                 className='btn-task-hour'
                 onClick={() => {
                   setModal('taskHour');
+                  setHour(date[3]);
                   setPatientID(id);
                   setType('meds')
                 }}

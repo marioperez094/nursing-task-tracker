@@ -48,3 +48,9 @@
 .btn-pt-purple-active {
   background-color: #B195D2 !important;
 }
+
+.btn-room {
+  font-size: 30px;
+  color: inherit;
+  text-decoration: none;
+}

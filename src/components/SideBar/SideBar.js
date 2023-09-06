@@ -1,5 +1,6 @@
 //External Imports
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faUserPlus, faHouse } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,6 +12,7 @@ import { useThemeContext } from '../../context/ThemeContext';
 import { useModalContext } from '../../context/ModalContext';
 import { useDateContext } from '../../context/DateContext'
 import { usePatientsContext } from '../../context/PatientsContext'
+import storage from '../../utils/storage';
 
 //Style Import
 import './SideBar.css'
@@ -23,9 +25,10 @@ function SideBar (props) {
 
   const { aside } = props;
 
-  const [buttonID, setButtonID] = useState('home');
+  const [buttonID, setButtonID] = useState(storage('NTTsb', 'home'));
 
 
+  
 
   return (
     <div className='container-fluid'>
@@ -40,17 +43,19 @@ function SideBar (props) {
 
                 <div className={`${ buttonID === 'home' ? 'btn-holder justify-content-start' : 'justify-content-center' } d-flex align-items-center`}>
 
-                  <button 
-                    className={ `${ buttonID === 'home' ? 'btn-pt-' + theme + '-active' : 'btn-pt' } btn-circular` }
+                  <Link 
+                    className={ `${ buttonID === 'home' ? 'btn-pt-' + theme + '-active' : 'btn-pt' } btn-circular d-flex justify-content-center align-items-center` }
+                    to='/'
                     onClick={() => {
-                      setButtonID('home')
+                      setButtonID('home');
+                      localStorage.setItem('NTTsb', 'home');
                     }}
                   >
                     <FontAwesomeIcon
-                      className='btn-addPatient'
+                      className='btn-home'
                       icon={ faHouse }
                     />
-                  </button>
+                  </Link>
 
                 </div>
                 <div className={ `${ theme }-bottom` }>
