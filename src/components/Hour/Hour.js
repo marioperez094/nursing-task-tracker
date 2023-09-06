@@ -12,6 +12,9 @@ import { useDateContext } from '../../context/DateContext';
 
 import filterTasks from '../../utils/filterTasks';
 
+//Style
+import './Hour.css'
+
 
 const Hour = (props) => {
   const { setModal, setPatientID, setType, setHour } = useModalContext();
