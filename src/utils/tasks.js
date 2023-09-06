@@ -20,7 +20,7 @@ const tasks = {
   camICU: {
     name: 'CAM ICU',
     type: 'chart',
-    times: [8, 20],
+    times: ['8:00', '20:00'],
     status: false
   },
   pain: {
@@ -32,7 +32,7 @@ const tasks = {
   nihss: {
     name: 'NIHSS',
     type: 'chart',
-    times: [7, 19],
+    times: ['7:00', '19:00'],
     status: false
   },
   turns: {
@@ -92,55 +92,55 @@ const tasks = {
   shiftScreen: {
     name: 'AdHoc Shift Screen',
     type: 'chart',
-    times: [8, 20],
+    times: ['8:00', '20:00'],
     status: false
   },
   orderEntry: {
     name: 'AdHoc Order Entry',
     type: 'chart',
-    times: [8, 20],
+    times: ['8:00', '20:00'],
     status: false
   },
   abcdefBundle: {
     name: 'ABCDEF Bundle',
     type: 'chart',
-    times: [8, 20],
+    times: ['8:00', '20:00'],
     status: false
   },
   sat: {
     name: 'Spontaneous Awakening Trial',
     type: 'chart',
-    times: [8, 20],
+    times: ['8:00', '20:00'],
     status: false
   },
   planOfCare: {
     name: 'Plan of Care',
     type: 'chart',
-    times: [5, 17],
+    times: ['5:00', '17:00'],
     status: false
   },
   chartCheck: {
     name: 'Chart Check',
     type: 'chart',
-    times: [5, 17],
+    times: ['5:00', '17:00'],
     status: false
   },
   foleyCare: {
     name: 'Foley Care',
     type: 'chart',
-    times: [8, 20],
+    times: ['8:00', '20:00'],
     status: false
   },
   bath: {
     name: 'Bath',
     type: 'chart',
-    times: [8, 20],
+    times: ['8:00', '20:00'],
     status: false
   },
   weight: {
     name: 'Weight',
     type: 'chart',
-    times: [6, 18],
+    times: ['6:00', '18:00'],
     status: false
   },
 }
@@ -149,7 +149,7 @@ const restraintsDoc = {
   renewRestraints: {
     name: 'Renew Restraints',
     type: 'chart',
-    times: [12, 0],
+    times: ['12:00', '0:00'],
     status: false,
   },
   restraints: {

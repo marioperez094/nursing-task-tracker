@@ -6,12 +6,14 @@ import PatientList from '../../components/PatientList/PatientList';
 
 //Functions 
 import { usePatientsContext } from '../../context/PatientsContext'
+import { useDateContext } from '../../context/DateContext';
 
 //Style Import
 import './Home.css'
 
 function Home (props) {
   const { patients } = usePatientsContext();
+  const { shift, currentShift } = useDateContext();
 
   return (
     <div className='row'>
@@ -33,7 +35,10 @@ function Home (props) {
                 })
               }
           </React.Fragment>
-          : <h1 className='text-center'>No Patients listed.</h1>
+          : <>
+              <h1 className='text-center'>No Patients listed.</h1>
+              <h4 className='text-center'><span className='warning-text'>WARNING: </span>The shift is set to <span className='warning-text'>{ shift }</span>. Only tasks between <span className='warning-text'>{ currentShift[0] }:00</span> to <span className='warning-text'>{ currentShift[12] }:59</span> will populate. Please change through the settings menu prior to adding a patient.</h4>
+            </>
         }
       </div>
     </div>

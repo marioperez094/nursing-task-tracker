@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClipboard, faMortarPestle, faList, faClock } from '@fortawesome/free-solid-svg-icons'
+import { faClipboard, faMortarPestle, faList, faUserClock, faUserNurse, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 import { useThemeContext } from '../../context/ThemeContext'
 
@@ -19,7 +19,9 @@ const TaskIcons = (props) => {
       case 'chart':
         return faClipboard;
       case 'clock':
-        return faClock;
+        return faUserClock;
+      case 'personal':
+        return faUserNurse;
     }
   }
 
@@ -35,9 +37,10 @@ const TaskIcons = (props) => {
           </h2>
         </div>
         <div className={`length-border ${ theme }-border d-flex justify-content-center align-items-center m-0`}>
-          <h6>
-            {tasks.length}
-          </h6>
+          { tasks.length > 0
+            ? <h6>{ tasks.length }</h6>
+            : <h6><FontAwesomeIcon icon={ faCheck } style={{ color: '#198754'}}/></h6>
+          }
         </div>
       </div>
     </React.Fragment>

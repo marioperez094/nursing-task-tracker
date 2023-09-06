@@ -5,29 +5,37 @@ import ModalTemplate from './ModalTemplate';
 import { useModalContext } from '../../context/ModalContext';
 import { usePatientsContext } from '../../context/PatientsContext'
 
-const RemovePatient = () => {
-  const { patientID, setModal } = useModalContext();
+const RemoveTask = () => {
+  const { patientID, setModal, setPatientID } = useModalContext();
   const { patients, setPatients } = usePatientsContext();
+  
+  const patientList = [...patients];
+  const patientIndex = patientList.findIndex((patient) => parseFloat(patient.id) === parseFloat(patientID.split('-')[0]));
+  
+  const taskName = patientID.split('-')[1];
+  const patient = patientList[patientIndex];
 
-  const patientRemove = (id) => {
-    setModal('false')
-    const patientList = patients.filter((patient) => {
-      return patient.id !== id
-    });
+  const { id, patientTasks } = patient;
+
+
+  const taskRemove = () => {
+    patientList[patientIndex].patientTasks = patientTasks.filter((task) => task.name !== taskName);
 
     localStorage.setItem('NTTpatients', JSON.stringify(patientList));
-    setPatients(patientList);
+    setPatients(patientList)
+    setPatientID(id);
+    setModal('taskHour');
   }
 
   return (
     <ModalTemplate
-      title={'Delete Room# ' + patientID + '?'}
+      title={'Delete ' + taskName + ' for Room# ' + patient.id + '?'}
     >
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-12 text-center'>
             <h5>
-              You are about to delete <span className='warning-text'>Room# { patientID }</span> and all tasks associated. Would you like to continue? 
+              You are about to delete all <span className='warning-text'>{ taskName }</span> task for the patient in room <span className='warning-text'>{ patient.id }</span>. Would you like to continue? 
             </h5>
           </div>
         </div>
@@ -35,7 +43,7 @@ const RemovePatient = () => {
           <div className='col-12 col-md-6 text-center'>
             <button
               className='btn w-100 btn-danger'
-              onClick={() => patientRemove(patientID)}
+              onClick={() => taskRemove()}
             >
               Delete
             </button>
@@ -54,4 +62,4 @@ const RemovePatient = () => {
   )
 }
 
-export default RemovePatient;
+export default RemoveTask;

@@ -56,11 +56,12 @@ const addNewPatient = (newPatient, currentShift, date) => {
   }
 
   if (admission) {
+    console.log(`${ [date[3]] }:00`)
     let addmission = Object.keys(admissionDoc).map((task) => {
       return ({
         name: admissionDoc[task].name,
         type: admissionDoc[task].type,
-        times: [date[3]]
+        times: [`${ [date[3]] }:00`]
       });
     });
 

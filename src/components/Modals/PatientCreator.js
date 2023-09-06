@@ -78,8 +78,9 @@ function PatientCreator () {
       neuro: 4,
     };
 
-    console.log(patientList)
+    patientList.sort((a, b) => a.id - b.id);
 
+    console.log(patientList)
     localStorage.setItem('NTTpatients', JSON.stringify(patientList))
     setPatients(patientList);
     setNewPatient(resetPatient);
@@ -101,7 +102,7 @@ function PatientCreator () {
           <input
             type='number'
             data-attribute='id'
-            className={ `form-control text-center w-75 ${check.length > 0 ? 'shake-modal' : '' }` }
+            className={ `form-control text-center w-75 ${ check.length > 0 ? 'shake-modal' : '' }` }
             value={ id }
             id='title'
             onChange={ (e) => changePatientAttributes(e) }

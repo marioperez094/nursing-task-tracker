@@ -7,7 +7,7 @@ const taskIntoArray = (tasks, id, shiftHours) => {
         patientTasks.push({
           id: `${id}-${task.name}-${time}`,
           name: task.name,
-          hour: `${time}:00`,
+          hour: `${time}`,
           type: task.type,
           complete: false
         })

@@ -33,3 +33,7 @@
   background-color: #198754;
 }
 
+.btn-task-hour {
+  background-color: transparent;
+  border-color: transparent;
+}
