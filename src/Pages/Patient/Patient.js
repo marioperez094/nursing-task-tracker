@@ -29,7 +29,7 @@ function Patient () {
           patient={ patient }
           disable={true}
         />
-        <div className='d-flex justify-content-start align-items-center mt-3'>
+        <div className='d-flex justify-content-start align-items-center mt-3 patient-list'>
           <label className='me-4'>
             <h5>Organize Tasks:</h5>
           </label>
@@ -39,7 +39,7 @@ function Patient () {
             onChange={ (e) => setTaskOrganizer(e.target.value) }
           >
             <option value='time'>Time</option>
-            <option value='alphabetic'>Alphabetic</option>
+            <option value='tasks'>Tasks</option>
           </select>
         </div>
       </div>
@@ -47,11 +47,13 @@ function Patient () {
         { taskOrganizer === 'time'
           ? <div>
               <PatientTable
+                key={ patient.id }
                 patient={ patient } 
               />
             </div>
           : <div>
               <TaskList
+                key={ patient.id }
                 patient={ patient }
               />
             </div>

@@ -12,7 +12,6 @@ import { useThemeContext } from '../../context/ThemeContext';
 import { useModalContext } from '../../context/ModalContext';
 import { useDateContext } from '../../context/DateContext'
 import { usePatientsContext } from '../../context/PatientsContext'
-import storage from '../../utils/storage';
 
 //Style Import
 import './SideBar.css'
@@ -25,7 +24,7 @@ function SideBar (props) {
 
   const { aside } = props;
 
-  const [buttonID, setButtonID] = useState(storage('NTTsb', 'home'));
+  const [buttonID, setButtonID] = useState('');
 
 
   

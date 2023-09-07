@@ -1,3 +1,15 @@
+.patient-list {
+  animation-name: scroll-left;
+  animation-duration: 0.5s;
+}
+
+@keyframes scroll-left {
+  0% {
+    margin-right: 200px;
+    margin-left: -200px;
+  }
+}
+
 .btn-remove-pt, .btn-pt-room, .btn-pt-tasks, .btn-add-task {
   border: 1px solid black;
   height: 100%;

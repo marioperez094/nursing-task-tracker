@@ -4,6 +4,7 @@ import React from 'react';
 //Functions
 import { useDateContext } from '../../context/DateContext';
 import { useThemeContext } from '../../context/ThemeContext';
+import { usePatientsContext } from '../../context/PatientsContext';
 
 import filterTasks from '../../utils/filterTasks';
 
@@ -34,6 +35,21 @@ const tasksObject = (arr) => {
 }
 
 function TaskList (props) {
+  const { patients, setPatients } = usePatientsContext();
+
+  const completeTask = (e) => {
+    let arr = e.target.value.split('-');
+    let patientList = [...patients]
+    let patientInd = patientList.findIndex(patient => patient.id === arr[0])
+    let taskIndex = patientList[patientInd].patientTasks.findIndex(task => task.id === e.target.value)
+
+    patientList[patientInd].patientTasks[taskIndex].complete = e.target.checked
+
+    localStorage.setItem('NTTpatients', JSON.stringify(patientList))
+    setPatients(patientList)
+  }
+
+
   const { date, currentShift } = useDateContext();
   const { theme } = useThemeContext();
 
@@ -50,20 +66,34 @@ function TaskList (props) {
     <div>
       { taskNamed.map((task) => {
         return (
-          <div className={ `row shadow-lg rounded mb-3` }>
+          <div
+            key={ task.name }
+            className={ `row shadow-lg rounded mb-3` }
+          >
             <div className='col-12'>
-              <h3 className={`ms-3 mt-3 ms-sm-5 ms-sm-5 ${ theme }-title`}>{ task.name }<small>({ task.hour.length })</small></h3>
+              <h3 className={ `ps-4 mt-3 ps-sm-5 ${ theme }-title` }>{ task.name }<small>({ task.hour.length })</small></h3>
             </div>
             <div className='col-12'>
               <div className='row'>
                 { task.hour.map((hour) => {
                     return (
-                      <div className='col-3 mb-2 d-flex align-items-center justify-content-evenly'>
+                      <div className='col-4 col-sm-3 mb-2'>
                         <input
                           type='checkbox'
-                          className=''
+                          value={ hour.id }
+                          checked={ hour.complete }
+                          id={ `${ hour.id }` }
+                          className='checkboxes ms-lg-5 me-3'
+                          onChange={(e) => completeTask(e)}
+
                         />
-                        <i>{ hour.hour }</i>
+                        <label htmlFor={ `${ hour.id }` }>
+                          <i
+                            className={`${ hour.complete ? 'crossed-task' : null}`}
+                          >
+                            { hour.hour }
+                          </i>
+                        </label>
                       </div>
                     )
                   })

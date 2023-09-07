@@ -30,13 +30,14 @@
   padding: 20px;
   width: 60%;
   max-width: 700px;
+  overflow-x: hidden;
   animation-name: modal-drop;
   animation-duration: 0.5s;
 }
 
 @keyframes modal-drop {
   0% {
-    margin: -1% auto;
+    margin: -50% auto;
   }
 
   100% {
@@ -183,4 +184,28 @@
 
 .hour-bar:last-child {
   margin-top: 7%;
+}
+
+.future-time {
+  animation-name: future-time;
+  animation-duration: 0.5s;
+}
+
+@keyframes future-time {
+  from {
+    margin-left: 200px;
+    margin-right: -200px;
+  }
+}
+
+.past-time {
+  animation-name: past-time;
+  animation-duration: 0.5s;
+}
+
+@keyframes past-time {
+  from {
+    margin-right: 200px;
+    margin-left: -200px;
+  }
 }

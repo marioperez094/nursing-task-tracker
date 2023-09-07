@@ -29,7 +29,7 @@ function PatientList (props) {
   const personal = filters.personalTasks.filter((task) => task.complete === false);
 
   return (
-    <div className='row gx-0 mb-2 shadow-lg rounded'>
+    <div className='row gx-0 mb-2 shadow-lg rounded patient-list'>
       <div className='col-2 col-sm-1'>
         <button 
           className= 'btn-remove-pt'

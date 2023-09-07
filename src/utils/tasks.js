@@ -38,14 +38,14 @@ const tasks = {
   turns: {
     name: 'Turn and Reposition',
     type: 'chart',
-    frequency: 2,
-    status: false
+    frequency: 4,
+    status: true
   },
   oralCare: {
     name: 'Oral care',
     type: 'chart',
     frequency: 4,
-    status: false
+    status: true
   },
   adls: {
     name: 'ADLs',

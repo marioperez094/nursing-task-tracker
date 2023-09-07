@@ -56,6 +56,21 @@ function TaskCreator () {
   }
 
   const setTaskTimes = (e) => {
+    if (e.target.value.length < 3) {
+      if (e.target.value > 23) {
+        e.target.value = 23;
+      }
+    }
+    else {
+      if (e.target.value > 2359) {
+        e.target.value = 2359;
+      }
+    }
+
+    if (e.target.value < 0) {
+      e.target.value = 0;
+    }
+
     let taskTime = e.target.value;
     let index = e.target.getAttribute('data-attribute')
 
@@ -189,28 +204,35 @@ function TaskCreator () {
                 onChange={ (e) => changeTaskAttributes(e) }
               />
             </InputTemplate>
-          : <InputTemplate inputLabel='Times'>
-              <div className='d-flex justify-content-center'>
-                { Object.keys(newTimes).map((time) => {
-                  return (
-                    <input 
-                      key={ time }
-                      className={ `form-control text-center w-25 ms-2 ${ check === 'timeEmpty' ? 'shake-modal' : ''}` }
-                      data-attribute={ time }
-                      value={ newTimes[time] }
-                      id='time'
-                      onChange={ (e) => setTaskTimes(e) }
-                    />
+
+          : <>
+              <InputTemplate inputLabel='Times'>
+                <div className='d-flex justify-content-center'>
+                  { Object.keys(newTimes).map((time) => {
+                    return (
+                      <input 
+                        key={ time }
+                        type='number'
+                        className={ `form-control text-center w-50 ms-2 ${ check === 'timeEmpty' ? 'shake-modal' :  ''}` }
+                        data-attribute={ time }
+                        value={ newTimes[time] }
+                        id='time'
+                        onChange={ (e) => setTaskTimes(e) }
+                      />
+                    )}
                   )}
-                )}
-                <button
-                  className='btn btn-outline-success ms-2'
-                  onClick={ (e) => addNewTimes(e) }
-                >
-                  +
-                </button>
-              </div>
-            </InputTemplate>
+                  <button
+                    className='btn btn-outline-success ms-2'
+                    onClick={ (e) => addNewTimes(e) }
+                  >
+                    +
+                  </button>
+                
+                </div>
+              </InputTemplate>
+              <p>Military time (i.e. 0, 830, 1615, 20).</p>
+            </>
+            
         }
         
         { check === 'timeEmpty' && <p className='warning-text'>*Please include a Time or Frequency</p> }

@@ -1,5 +1,7 @@
 aside {
   overflow-y: clip;
+  overflow-x: hidden;
+  z-index: 1;
 }
 
 .slide-down, .slide-up {

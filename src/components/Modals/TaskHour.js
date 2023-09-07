@@ -27,6 +27,7 @@ function TaskHour () {
 
   const [currentHour, setCurrentHour] = useState(hour)
   const [currentTasks, setCurrentTasks] = useState(filterTasks(patientTasks, currentHour, currentShift))
+  const [currentAnimation, setCurrentAnimation] = useState('');
   
   let typeTasks = {
     'meds': currentTasks.medTasks.sort((a, b) => a.hour.split(':')[1] - b.hour.split(':')[1]),
@@ -48,6 +49,13 @@ function TaskHour () {
 
   const showPastTasks = (num) => {
     let changedHour = currentHour + num;
+
+    if (changedHour > currentHour) {
+      setCurrentAnimation('future-time')
+    }
+    else {
+      setCurrentAnimation('past-time')
+    }
 
     if (changedHour > 23) {
       changedHour = 0;
@@ -114,7 +122,7 @@ function TaskHour () {
             return (
               <div
                 key={ task.id } 
-                className={ `${ theme }-divider row` }
+                className={ `${ theme }-divider row ${ currentAnimation }` }
               >
                 <div className='col-2 d-flex align-items-center'>
                   <button

@@ -32,11 +32,15 @@ const addNewPatient = (newPatient, currentShift, date) => {
 
 
   if (status === 'icu') {
-    statusTasks.forEach((task) => task.frequency = 1);
+    statusTasks.forEach((task) => task.frequency = 2);
+    tasks.vitals.frequency = 1;
+    tasks.intake.frequency = 1;
+    tasks.output.frequency = 1;
   }
 
   if (status === 'medSurg') {
     statusTasks.forEach((task) => task.frequency = 8);
+    tasks.turns.frequency = 4;
   }
   
   if (pain) {
