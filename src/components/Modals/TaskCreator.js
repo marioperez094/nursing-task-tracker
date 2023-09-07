@@ -11,6 +11,7 @@ import InputTemplate from '../InputTemplate/InputTemplate';
 import { useModalContext } from '../../context/ModalContext';
 import { usePatientsContext } from '../../context/PatientsContext';
 import { useDateContext } from '../../context/DateContext';
+import { titleCheck, duplicateTasks } from '../../utils/newItemChecker';
 
 import taskIntoArray from '../../utils/taskIntoArray'
 
@@ -34,7 +35,7 @@ function TaskCreator () {
   })
   const [newTimes, setNewTimes ]= useState({ 0: '' }) 
 
-  const { name, status, frequency, times, type } = newTask;
+  const { name, status, frequency, type } = newTask;
 
   const changeTaskAttributes = (e) => {
     let attribute = e.target.getAttribute('data-attribute');
@@ -45,7 +46,6 @@ function TaskCreator () {
 
     setNewTask(task);
     setCheck('');
-    console.log(task);
   };
 
   const addNewTimes = (e) => {
@@ -66,6 +66,13 @@ function TaskCreator () {
 
   const addNewTask = (e, modalState) => {
     e.preventDefault();
+    let title = document.getElementById('title');
+    let timeShake = document.getElementById('time');
+
+    if(titleCheck(name)) {
+      title.focus();
+      return setCheck('title');
+    }
 
     let times = Object.keys(newTimes).map(time => newTimes[time]);
     times = times.map((time) => {
@@ -87,13 +94,27 @@ function TaskCreator () {
       type: type
     }];
 
+    let empty;
+
     switch (status) {
       case 'frequency':
         task[0][status] = parseFloat(frequency);
+        empty = 'not'
         break;
       case 'times':
         task[0][status] = times;
+        empty='not'
         break;
+    }
+
+    if (empty.length === 0) {
+      timeShake.focus();
+      return setCheck('timeEmpty');
+    }
+
+    if (duplicateTasks(name, patientTasks)) {
+      title.focus();
+      return setCheck('titleDuplicate')
     }
 
     patientList[patientIndex].patientTasks.push(...taskIntoArray(task, id, currentShift));
@@ -135,11 +156,16 @@ function TaskCreator () {
         <InputTemplate inputLabel='Task Name:'>
           <input 
             data-attribute='name'
-            className={ `form-control text-center w-75` }
+            className={ `form-control text-center w-75 ${ check.includes('title') ? 'shake-modal' : '' }` }
             value={ name }
+            id='title'
             onChange={ (e) => changeTaskAttributes(e) }
           />
         </InputTemplate>
+        <div>
+          { check === 'title' && <p className='warning-text'>*Please include a Task Name</p> }
+          { check === 'titleDuplicate' && <p className='warning-text'>*This would create a task duplicate.</p> }
+        </div>
         <InputTemplate inputLabel='Timed/Frequency'>
           <select
             data-attribute='status'
@@ -156,9 +182,10 @@ function TaskCreator () {
           ? <InputTemplate inputLabel='Q-hours'>
               <input
                 type='number'
-                className='form-control text-center w-75'
+                className={ `form-control text-center w-75 ${ check === 'timeEmpty' ? 'shake-modal' : ''}` }
                 data-attribute='frequency'
                 value={ frequency }
+                id='time'
                 onChange={ (e) => changeTaskAttributes(e) }
               />
             </InputTemplate>
@@ -168,9 +195,10 @@ function TaskCreator () {
                   return (
                     <input 
                       key={ time }
-                      className='form-control text-center w-25 ms-2'
+                      className={ `form-control text-center w-25 ms-2 ${ check === 'timeEmpty' ? 'shake-modal' : ''}` }
                       data-attribute={ time }
                       value={ newTimes[time] }
+                      id='time'
                       onChange={ (e) => setTaskTimes(e) }
                     />
                   )}
@@ -184,6 +212,8 @@ function TaskCreator () {
               </div>
             </InputTemplate>
         }
+        
+        { check === 'timeEmpty' && <p className='warning-text'>*Please include a Time or Frequency</p> }
 
         <InputTemplate inputLabel='Type:'>
           <select

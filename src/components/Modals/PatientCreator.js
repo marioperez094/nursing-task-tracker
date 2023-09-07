@@ -49,7 +49,7 @@ function PatientCreator () {
   //Add a patient
   const addPatient = (e, modalState) => {
     e.preventDefault();
-    let title = document.getElementById('title')
+    let title = document.getElementById('title');
 
     if (titleCheck(id)) {
       title.focus();

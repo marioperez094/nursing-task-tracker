@@ -10,9 +10,7 @@ import { useDateContext } from '../../context/DateContext';
 function PatientTable (props) {
   const { currentShift, date } = useDateContext();
   const { patient } = props;
-
-  const { id, patientTasks } = patient
-
+  
   return (
     <div className='row'>
       <table className='table table-border bg-light mt-4 shadow-lg p-3 mb-2 bg-body rounded'>

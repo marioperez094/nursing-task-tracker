@@ -7,7 +7,6 @@ import TaskIcons from '../TaskIcons/TaskIcons'
 //Functions
 import { useThemeContext } from '../../context/ThemeContext';
 import { useModalContext } from '../../context/ModalContext';
-import { usePatientsContext } from '../../context/PatientsContext'
 import { useDateContext } from '../../context/DateContext';
 
 import filterTasks from '../../utils/filterTasks';
@@ -18,7 +17,6 @@ import './Hour.css'
 
 const Hour = (props) => {
   const { setModal, setPatientID, setType, setHour } = useModalContext();
-  const { patients } = usePatientsContext();
   const { currentShift } = useDateContext();
   const { theme } = useThemeContext();
   const { hour, currentHour, patient } = props;
@@ -28,7 +26,6 @@ const Hour = (props) => {
 
 
   const filters = filterTasks(patientTasks, hour, currentShift);
-  const allTasks = filters.currentShift.filter((task) => task.complete === false);
   const hourTasks = filters.currentTasks.filter((task) => task.complete === false);
   const meds = filters.medTasks.filter((task) => task.complete === false);
   const personal = filters.personalTasks.filter((task) => task.complete === false);

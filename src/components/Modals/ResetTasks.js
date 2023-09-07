@@ -1,5 +1,5 @@
 //External Imports
-import React, { useState } from 'react';
+import React from 'react';
 
 //Internal Imports
 import ModalTemplate from './ModalTemplate';

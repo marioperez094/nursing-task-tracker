@@ -1,6 +1,5 @@
 //External Imports
 import React from 'react';
-import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
 
@@ -23,7 +22,6 @@ function PatientList (props) {
   const { patient, disable } = props;
   const { id, patientTasks } = patient;
 
-  console.log(disable)
   const filters = filterTasks(patientTasks, date[3], currentShift);
   const allTasks = filters.currentShift.filter((task) => task.complete === false);
   const hourTasks = filters.currentTasks.filter((task) => task.complete === false);

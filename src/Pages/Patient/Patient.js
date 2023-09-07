@@ -4,19 +4,20 @@ import { useParams } from 'react-router-dom';
 
 //Components
 import PatientTable from '../../components/PatientTable/PatientTable';
+import PatientList from '../../components/PatientList/PatientList';
+import TaskList from '../../components/TaskList/TaskList'
 
 //Functions
 import { usePatientsContext } from '../../context/PatientsContext';
-import PatientList from '../../components/PatientList/PatientList';
 
-function Patient (props) {
+function Patient () {
   const { patients } = usePatientsContext();
   const { patientId } = useParams();
 
   const patientIndex = patients.findIndex((patient) => patient.id === patientId);
   const patient = patients[patientIndex];
 
-  const { id, patientTasks } = patient;
+  const { id } = patient;
 
   const [taskOrganizer, setTaskOrganizer] = useState('time');
 
@@ -49,7 +50,11 @@ function Patient (props) {
                 patient={ patient } 
               />
             </div>
-          : <div>Alphabetic</div>
+          : <div>
+              <TaskList
+                patient={ patient }
+              />
+            </div>
         }
       </div>
     </div>

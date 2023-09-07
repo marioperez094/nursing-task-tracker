@@ -1,7 +1,6 @@
 //Functions
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useModalContext } from '../../context/ModalContext'
 import { useThemeContext } from '../../context/ThemeContext';
 
 //Style

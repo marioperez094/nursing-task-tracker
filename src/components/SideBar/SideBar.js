@@ -20,7 +20,7 @@ import './SideBar.css'
 function SideBar (props) {
   const { theme } = useThemeContext();
   const { shift } = useDateContext();
-  const { setModal, patientID, setPatientID } = useModalContext();
+  const { setModal } = useModalContext();
   const { patients } = usePatientsContext();
 
   const { aside } = props;
