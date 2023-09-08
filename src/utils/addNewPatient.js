@@ -2,7 +2,7 @@ import { tasks, restraintsDoc, admissionDoc } from './tasks'
 import taskIntoArray from './taskIntoArray'
 
 const addNewPatient = (newPatient, currentShift, date) => {
-  const {
+  const { 
     id,
     status,
     admission,
@@ -12,46 +12,53 @@ const addNewPatient = (newPatient, currentShift, date) => {
     neuro
   } = newPatient;
 
+  let taskList = {};
+  Object.keys(tasks).forEach((task) => { taskList[task] = { ...tasks[task] } });
+
   let patient = {
     id: id,
-    patientTasks: [],
+    patientTasks: []
   }
-
-  
-  let staticTasks = Object.keys(tasks).map((task) => tasks[task]);
-
-  let statusTasks = staticTasks.filter((task) => task.status);
 
   if (parseFloat(neuro) === 8) {
-    delete tasks.neuro.frequency;
-    tasks.neuro.times = [8, 16, 20, 4]
+    delete taskList.neuro.frequency;
+    taskList.neuro.times = ['8:00', '16:00', '20:00', '4:00'];
   }
   else {
-    tasks.neuro.frequency = parseFloat(neuro);
-  };
-
-
-  if (status === 'icu') {
-    statusTasks.forEach((task) => task.frequency = 2);
-    tasks.vitals.frequency = 1;
-    tasks.intake.frequency = 1;
-    tasks.output.frequency = 1;
+    taskList.neuro.frequency = parseFloat(neuro);
   }
 
-  if (status === 'medSurg') {
-    statusTasks.forEach((task) => task.frequency = 8);
-    tasks.turns.frequency = 4;
+  switch (status) {
+    case 'icu':
+      taskList.vitals.frequency = 1;
+      taskList.intake.frequency = 1;
+      taskList.output.frequency = 1;
+      taskList.turns.frequency = 2;
+      taskList.oralCare.frequency = 2;
+      break;
+    case 'medSurg':
+      delete taskList.vitals.frequency;
+      taskList.vitals.times = ['8:00', '16:00', '20:00', '4:00'];
+      delete taskList.temperature.frequency;
+      taskList.temperature.times = ['8:00', '16:00', '20:00', '4:00'];
+      delete taskList.assessment.frequency;
+      taskList.assessment.times = ['8:00', '16:00', '20:00', '4:00'];
+    case 'tele':
+      delete taskList.sat;
+      break;
   }
-  
+
   if (pain) {
-    tasks.pain.frequency = 1;
+    taskList.pain.frequency = 1;
   };
 
-  if (sedation) { 
+  if (sedation) {
     tasks.rass.frequency = 1;
-  };
+  }
 
-  patient.patientTasks.push(...taskIntoArray(staticTasks, id, currentShift));
+  let statusTasks = Object.keys(taskList).map((task) => taskList[task])
+
+  patient.patientTasks.push(...taskIntoArray(statusTasks, id, currentShift));
 
   if (restraints) {
     let restrained = Object.keys(restraintsDoc).map((task) => restraintsDoc[task]);
@@ -60,12 +67,12 @@ const addNewPatient = (newPatient, currentShift, date) => {
   }
 
   if (admission) {
-    console.log(`${ [date[3]] }:00`)
+    console.log(`${[date[3]]}:00`)
     let addmission = Object.keys(admissionDoc).map((task) => {
       return ({
         name: admissionDoc[task].name,
         type: admissionDoc[task].type,
-        times: [`${ [date[3]] }:00`]
+        times: [`${[date[3]]}:00`]
       });
     });
 
@@ -76,8 +83,15 @@ const addNewPatient = (newPatient, currentShift, date) => {
   tasks.rass.frequency = 4;
   statusTasks.forEach((task) => task.frequency = 4);
 
-  
+  console.log(patient);
+  console.log('taskList');
+  console.log(taskList);
+  console.log('tasks');
+  console.log(tasks);
+
   return patient;
+
+
 }
 
 export default addNewPatient;

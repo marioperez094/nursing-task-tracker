@@ -145,6 +145,7 @@ function TaskCreator () {
     setModal(modalState);
     setPatients(patientList);
     setNewTask(resetNewTasks);
+    setNewTimes({ 0: '' });
   }
 
   return (
