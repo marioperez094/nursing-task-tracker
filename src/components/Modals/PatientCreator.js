@@ -81,7 +81,7 @@ function PatientCreator () {
     patientList.sort((a, b) => a.id - b.id);
 
     console.log(patientList)
-    //localStorage.setItem('NTTpatients', JSON.stringify(patientList))
+    localStorage.setItem('NTTpatients', JSON.stringify(patientList))
     setPatients(patientList);
     setNewPatient(resetPatient);
     setModal(modalState);
