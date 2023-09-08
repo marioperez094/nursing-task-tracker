@@ -10,8 +10,8 @@
 
 @keyframes slide-left {
   from {
-    margin-right: -15px;
-    margin-left: 15px;
+    margin-right: -20px;
+    margin-left: 20px;
   }
 }
 
