@@ -1,30 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.css';
-
 import './index.css';
 import App from './App';
-
-import { ModalProvider } from './context/ModalContext';
-import { ThemeProvider } from './context/ThemeContext';
-import { DateProvider } from './context/DateContext';
-import { PatientsProvider } from './context/PatientsContext';
-
 import reportWebVitals from './reportWebVitals';
-
+import { ModalProvider } from './context/ModalContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <ModalProvider>
-        <DateProvider>
-          <PatientsProvider>
-            <App />
-          </PatientsProvider>
-        </DateProvider>
-      </ModalProvider>
-    </ThemeProvider>
+    <ModalProvider>
+      <App />
+    </ModalProvider>
   </React.StrictMode>
 );
 
