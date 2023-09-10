@@ -9,7 +9,7 @@ function ThemeProvider ({ children }) {
 
   function setTheme (color) {
     localStorage.setItem('NTTtheme', color);
-    setTheme(color);
+    changeTheme(color);
   }
 
   return (

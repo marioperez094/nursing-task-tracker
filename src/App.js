@@ -2,8 +2,19 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+//Components
+import Navbar from './components/Navbar/Navbar';
+import SideBar from './components/SideBar/SideBar';
+import Patient from './pages/Patient/Patient';
+
 //Context
-import { useModal } from './context/ModalContext'
+import { useModal } from './context/ModalContext';
+import { ThemeProvider } from './context/ThemeContext';
+import { DateProvider } from './context/DateContext';
+import { PatientsProvider } from './context/PatientsContext'
+
+//Style
+import './App.css'
 
 function App() {
   const { modal } = useModal();
@@ -14,11 +25,22 @@ function App() {
     <>
       <Router>
         <div id='page-container'>
-          Hi
+          <ThemeProvider>
+            <DateProvider>
+              <PatientsProvider>
+                <Navbar aside={ aside } setAside={ setAside } />
+                <SideBar aside={ aside }>
+                  <Routes>
+                    <Route path='/patient/:patientRoom' element={ <Patient aside={ aside } /> } />
+                  </Routes>
+                </SideBar>
+              </PatientsProvider>
+            </DateProvider>
+          </ThemeProvider>
         </div>
       </Router>
       { modal === 'false' &&
-        <div>Hello</div>
+        <div></div>
       }
     </>
   )

@@ -1,0 +1,33 @@
+/*Aside transition*/
+.aside-true, .aside-false {
+  height: 10vh;
+}
+
+.aside-true {
+  border-radius: 0 0 10px 0;
+  transition-delay: 0s;
+}
+
+.aside-false {
+  border-radius: 0 0 10px 10px;
+  transition-delay: 0.5s;
+}
+
+/*Navbar Button*/
+#btn-navbar {
+  border-color: #6f6f6f;
+  color: #6f6f6f;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+#btn-navbar:active{
+  border: 5px solid black;
+  background: #6f6f6f;
+  color: white;
+}
+
+.icon-navbar {
+  font-size: 25px;
+}
