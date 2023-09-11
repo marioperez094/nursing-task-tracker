@@ -6,7 +6,9 @@ import './index.css';
 
 import App from './App';
 
-
+import { ThemeProvider } from './context/ThemeContext';
+import { DateProvider } from './context/DateContext';
+import { PatientsProvider } from './context/PatientsContext';
 import { ModalProvider } from './context/ModalContext';
 
 import reportWebVitals from './reportWebVitals';
@@ -14,9 +16,16 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ModalProvider>
-      <App />
-    </ModalProvider>
+
+    <ThemeProvider>
+      <DateProvider>
+        <PatientsProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </PatientsProvider>
+      </DateProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

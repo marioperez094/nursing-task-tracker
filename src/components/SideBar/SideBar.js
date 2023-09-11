@@ -62,6 +62,7 @@ function SideBar (props) {
                 <button
                   className='btn-circular'
                   id='btn-settings'
+                  onClick={ () => setModal('settings') }
                 >
                   <FontAwesomeIcon
                     className='icon-settings'
@@ -72,6 +73,7 @@ function SideBar (props) {
                   <button
                     className='btn-circular'
                     id='btn-addPatient'
+                    onClick={() => setModal('addPatient')}
                   >
                     <FontAwesomeIcon
                       className='icon-addPatient'

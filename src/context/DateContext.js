@@ -55,4 +55,4 @@ function hourRange (shift) {
   return arr;
 }
 
-export { DateProvider, useDate };
+export { DateProvider, useDate, hourRange };

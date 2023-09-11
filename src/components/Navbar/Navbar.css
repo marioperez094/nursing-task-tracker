@@ -1,6 +1,6 @@
 /*Aside transition*/
 .aside-true, .aside-false {
-  height: 10vh;
+  min-height: 10vh;
 }
 
 .aside-true {

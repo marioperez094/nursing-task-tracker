@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import SideBar from './components/SideBar/SideBar';
 import Patient from './pages/Patient/Patient';
+import ModalWindow from './Modals/ModalWindows';
 
 //Context
 import { useModal } from './context/ModalContext';
@@ -25,22 +26,16 @@ function App() {
     <>
       <Router>
         <div id='page-container'>
-          <ThemeProvider>
-            <DateProvider>
-              <PatientsProvider>
-                <Navbar aside={ aside } setAside={ setAside } />
-                <SideBar aside={ aside }>
-                  <Routes>
-                    <Route path='/patient/:patientRoom' element={ <Patient aside={ aside } /> } />
-                  </Routes>
-                </SideBar>
-              </PatientsProvider>
-            </DateProvider>
-          </ThemeProvider>
+          <Navbar aside={ aside } setAside={ setAside } />
+          <SideBar aside={ aside }>
+            <Routes>
+              <Route path='/patient/:patientRoom' element={ <Patient aside={ aside } /> } />
+            </Routes>
+          </SideBar>
         </div>
       </Router>
-      { modal === 'false' &&
-        <div></div>
+      { modal !== 'false' 
+        && <ModalWindow />
       }
     </>
   )
