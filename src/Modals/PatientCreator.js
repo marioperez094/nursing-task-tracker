@@ -13,16 +13,10 @@ import { useModal } from '../context/ModalContext';
 import { useDate } from '../context/DateContext';
 
 //Functions
-import { changeAttributes } from '../utils/addItem';
+import { changeAttributes, titleCheck, duplicateCheck, addNewPatient } from '../utils/addItem';
 
 function PatientCreator () {
-  const { patients, setPatients } = usePatients();
-  const { setModal } = useModal();
-  const { date, shiftHours } = useDate();
-
-  const [check, setCheck] = useState('');
-
-  const [newPatient, setNewPatient] = useState({
+  const resetPatient = {
     id: '',
     status: 'icu',
     admission: false,
@@ -30,7 +24,15 @@ function PatientCreator () {
     sedation: false,
     pain: false,
     neuro: 4,
-  })
+  };
+
+  const { patients, setPatients } = usePatients();
+  const { setModal } = useModal();
+  const { date, shiftHours } = useDate();
+
+  const [check, setCheck] = useState('');
+
+  const [newPatient, setNewPatient] = useState(resetPatient);
   const { id, status, admission, restraints, sedation, pain, neuro } = newPatient;
 
   //Change Inputs
@@ -44,18 +46,42 @@ function PatientCreator () {
 
     setNewPatient(changeAttributes(newPatient, key, property));
     setCheck('');
-  }
+  };
+
+  //Add a patient
+  function addPatient (e, modalState) {
+    e.preventDefault();
+    let title = document.getElementById('title');
+
+    if (titleCheck(id)) {
+      title.focus();
+      return setCheck('title');
+    };
+
+    if (duplicateCheck(id, patients)) {
+      title.focus();
+      return setCheck('duplicate');
+    };
+
+    if (patients.length > 9) {
+      title.focus();
+      return setCheck('limit');
+    }
+
+    let patientList = [...patients, addNewPatient(newPatient, shiftHours, date)];
+
+    patientList.sort((a, b) => a.id - b.id);
+
+    setPatients(patientList);
+    setNewPatient(resetPatient);
+    setModal(modalState);
+  };
 
   return (
     <ModalTemplate
       title={'Add a new patient'}
     >
       <form className='text-center'>
-
-
-        <div>
-          {check === 'limit' && <p className='warning-text'>*Maximum patient limit is 10.</p>}
-        </div>
 
         <InputTemplate inputLabel='Patient Room Number:'>
           <input
@@ -73,6 +99,9 @@ function PatientCreator () {
         </div>
         <div>
           {check === 'duplicate' && <p className='warning-text'>*Patient Room Number {id} is already in use.</p>}
+        </div>
+        <div>
+          {check === 'limit' && <p className='warning-text'>*Maximum patient limit is 10.</p>}
         </div>
 
         <InputTemplate inputLabel='Patient Status:'>
@@ -164,6 +193,7 @@ function PatientCreator () {
           <div className='col-12 col-md-6 text-center'>
             <button
               className='btn w-100 btn-success'
+              onClick={ (e) => addPatient(e, 'false') }
             >
               <h5><FontAwesomeIcon icon={faUserPlus} /> <span>Add</span></h5>
             </button>
@@ -171,6 +201,7 @@ function PatientCreator () {
           <div className='col-12 col-md-6 mt-4 mt-md-0 text-center'>
             <button
               className='btn w-100 btn-success'
+              onClick={ (e) => addPatient(e, 'addPatient') }
             >
               <h5>
                 <FontAwesomeIcon icon={faUserPlus} />

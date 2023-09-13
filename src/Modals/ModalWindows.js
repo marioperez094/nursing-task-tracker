@@ -17,6 +17,8 @@ function ModalWindow () {
         return <SettingsModal />
       case 'addPatient':
         return <PatientCreator />
+      default:
+        return null;
     }
   }
 

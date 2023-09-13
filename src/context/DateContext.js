@@ -21,13 +21,14 @@ function DateProvider ({ children }) {
   function setShift (shift) {
     localStorage.setItem('NTTshift', shift);
     changeShift(shift);
+    setShiftHours(hourRange(shift));
   }
 
   //Range of hours based on shift var
   const [shiftHours, setShiftHours] = useState(hourRange(shift));
 
   return (
-    <DateContext.Provider value={{ date, setDate, shift, setShift, shiftHours, setShiftHours }}>
+    <DateContext.Provider value={{ date, setDate, shift, setShift, shiftHours }}>
       { children }
     </DateContext.Provider>
   );

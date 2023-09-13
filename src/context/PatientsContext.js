@@ -10,7 +10,7 @@ function PatientsProvider ({ children }) {
   const [patients, changePatients] = useState(storage('NTTpatients', []));
 
   function setPatients (patients) {
-    localStorage.setItem('NTTpatients', patients);
+    localStorage.setItem('NTTpatients', JSON.stringify(patients));
     changePatients(patients);
   };
 

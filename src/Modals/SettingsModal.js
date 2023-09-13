@@ -3,17 +3,18 @@ import React from 'react';
 
 //Components
 import ModalTemplate from './ModalTemplate';
+import SliderButton from '../components/SliderButton/SliderButton';
 
 //Context
 import { useTheme } from '../context/ThemeContext';
-import { useDate, hourRange } from '../context/DateContext';
+import { useDate } from '../context/DateContext';
 
 
 //Functions
 import InputTemplate from '../components/InputTemplate/InputTemplate';
 
 function SettingsModal () {
-  const { setShift, setShiftHours, shift } = useDate();
+  const { setShift, shift } = useDate();
   const { setTheme } = useTheme();
 
   return (
@@ -24,17 +25,7 @@ function SettingsModal () {
         <div className='form-group text-center'>
 
           <InputTemplate inputLabel={'Shift:'}>
-            <select
-              className='form-select shift-selector text-center w-50'
-              value={ shift }
-              onChange={(e) => {
-                setShift(e.target.value)
-                setShiftHours(hourRange(e.target.value))
-              }}
-            >
-              <option value='AM'>AM</option>
-              <option value='PM'>PM</option>
-            </select>
+            <SliderButton optionOne='AM' optionTwo='PM' option={ shift } setOption={ setShift }/>
           </InputTemplate>
 
           <InputTemplate inputLabel={'Theme:'}>

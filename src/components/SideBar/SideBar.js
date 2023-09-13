@@ -57,7 +57,9 @@ function SideBar (props) {
             </div>
             <div className={ `default-buttons ${ theme }-primary text-center py-3 mt-3` }>
               <div>
-                <h5 className='warning-text'>{ shift }</h5>
+                <h5 className='warning-text'>
+                  { shift }
+                </h5>
                 <h5>Shift</h5>
                 <button
                   className='btn-circular'
@@ -86,7 +88,7 @@ function SideBar (props) {
           </div>     
         </aside>
 
-        <main className={ `col-${ aside ? '10' : '12' } col-md-${ aside ? '11' : '12' } ` }>
+        <main className={ `col-${ aside ? '10 slide' : '12' } col-md-${ aside ? '11 slide' : '12' } ` }>
           { props.children }
         </main>
       </div>

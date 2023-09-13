@@ -9,18 +9,19 @@ import { useTheme } from '../../context/ThemeContext';
 import './PatientButtons.css'
 
 function PatientButtons (props) {
-  const { theme } = useTheme();
   const { link } = props;
-
-  const patientRoom = useMatch(link)
+  const patientRoom = useMatch(link);
+  
+  const { theme } = useTheme();
 
   return (
-    <div className={ `${ patientRoom ? 'btn-holder' : ''}` }>
+    <div className={ `${ patientRoom ? 'btn-holder' : 'btn-sb'}` }>
       <div className={ `${ patientRoom ? 'btn-holder' : ''}` }>
         <div className={ `${ theme }-top` }></div>
         <Link
           className={ `${ patientRoom ? 'btn-pt-' + theme : 'btn-pt'} btn-circular d-flex justify-content-center align-items-center` }
           to={ link }
+          onClick={ () => window.scrollTo(0, 0) }
         >
           { props.children }
         </Link>

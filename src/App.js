@@ -5,14 +5,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 //Components
 import Navbar from './components/Navbar/Navbar';
 import SideBar from './components/SideBar/SideBar';
+import Home from './pages/Home/Home';
 import Patient from './pages/Patient/Patient';
+import Error from './pages/Error/Error';
 import ModalWindow from './Modals/ModalWindows';
 
 //Context
 import { useModal } from './context/ModalContext';
-import { ThemeProvider } from './context/ThemeContext';
-import { DateProvider } from './context/DateContext';
-import { PatientsProvider } from './context/PatientsContext'
 
 //Style
 import './App.css'
@@ -29,7 +28,9 @@ function App() {
           <Navbar aside={ aside } setAside={ setAside } />
           <SideBar aside={ aside }>
             <Routes>
+              <Route exact path='/' element={ <Home aside={aside} /> } />
               <Route path='/patient/:patientRoom' element={ <Patient aside={ aside } /> } />
+              <Route path='/*' element={ <Error /> } />
             </Routes>
           </SideBar>
         </div>

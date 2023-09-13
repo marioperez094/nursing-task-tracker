@@ -47,6 +47,14 @@ aside {
   }
 }
 
+main {
+  transition-delay: 0.5s;
+}
+
+.slide {
+  transition-delay: 0s;
+}
+
 .default-buttons {
   border-top: 2px solid rgba(255, 255, 255, 0.4);
   position: sticky;

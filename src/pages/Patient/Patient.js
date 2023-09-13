@@ -5,7 +5,7 @@ function Patient (props) {
 
   console.log(patientRoom);
   return (
-    <div>Hi</div>
+    <div>{ patientRoom }</div>
   )
 }
 
