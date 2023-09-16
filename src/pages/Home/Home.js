@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Components
-import PatientList from '../../components/PatientList/PatientList'
+import PatientFilter from '../../components/PatientFilter/PatientFilter'
 
 //Context
 import { usePatients } from '../../context/PatientsContext';
@@ -10,11 +10,10 @@ import { useDate } from '../../context/DateContext';
 
 //Style
 import './Home.css';
-import { currentHourTasks, currentShiftTasks } from '../../utils/filterTasks';
 
 function Home () {
   const { patients } = usePatients();
-  const { shift, shiftHours, date } = useDate();
+  const { shift, shiftHours } = useDate();
 
   return (
     <div className='row'>
@@ -26,11 +25,9 @@ function Home () {
               </h2>
               { patients.map((patient) => {
                 return (
-                  <PatientList
+                  <PatientFilter
                     key={ patient.id }
-                    id={ patient.id }
-                    length = { currentShiftTasks(shiftHours, patient.patientTasks).length }
-                    tasks={ currentHourTasks(date[3], patient.patientTasks) }
+                    patient={ patient }
                   />
                 )})
               }

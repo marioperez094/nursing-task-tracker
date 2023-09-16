@@ -10,7 +10,10 @@
   }
 }
 
-.btn-remove-pt, .btn-pt-room, .btn-pt-tasks, .btn-add-task {
+.btn-remove-pt,
+.btn-pt-room,
+.btn-pt-tasks,
+.btn-add-task {
   border: 1px solid black;
   height: 100%;
   width: 100%;
@@ -31,14 +34,15 @@
   transition: 0.5s;
 }
 
-.btn-remove-pt:active, .btn-add-task:active {
+.btn-remove-pt:active,
+.btn-add-task:active {
   border: 5px solid black !important;
   color: white;
 }
 
 .btn-remove-pt:active {
   background-color: #D9534F;
-  
+
 }
 
 .btn-add-task:active {
