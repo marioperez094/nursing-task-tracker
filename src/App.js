@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <Router basename='/nursing-task-tracker/'>
+      <Router>
         <div id='page-container'>
           <Navbar aside={aside} setAside={setAside} />
           <SideBar aside={aside}>
