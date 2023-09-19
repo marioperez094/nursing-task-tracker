@@ -1,7 +1,11 @@
+//External Imports
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Footer () {
+//Style
+import './Footer.css'
+
+function Footer() {
   return (
     <footer className='mt-3' id='footer'>
       <div className='container-fluid pt-3'>
