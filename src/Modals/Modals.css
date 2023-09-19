@@ -26,22 +26,18 @@
 .modal-box {
   border: 1px solid #888;
   border-radius: 25px;
-  margin: 15% auto;
+  margin: 5% auto;
   padding: 20px;
   width: 60%;
   max-width: 700px;
-  overflow-x: hidden;
+  overflow-x: clip;
   animation-name: modal-drop;
   animation-duration: 0.5s;
 }
 
 @keyframes modal-drop {
-  0% {
+  from {
     margin: -50% auto;
-  }
-
-  100% {
-    margin: 15% auto;
   }
 }
 
@@ -60,6 +56,8 @@
   color: #8553b8;
   border-bottom: 1px solid #8553b8;
 }
+
+
 
 #btn-exit-modal,
 #btn-delete-tasks {

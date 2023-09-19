@@ -1,24 +1,23 @@
 //External Imports
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMortarPestle, faNotesMedical, faArrowRight, faArrowLeft, faUserNurse } from '@fortawesome/free-solid-svg-icons';
+import { faMortarPestle, faNotesMedical, faUserNurse } from '@fortawesome/free-solid-svg-icons';
 
 //Components
 import ModalTemplate from './ModalTemplate';
+import TimeLine from '../components/TimeLine/TimeLine';
 
 //Context
 import { usePatients } from '../context/PatientsContext'; 
 import { useModal } from '../context/ModalContext';
-import { useDate } from '../context/DateContext';
 import { useTheme } from '../context/ThemeContext';
 
 //Function
-import { currentHourTasks, taskType } from '../utils/filterTasks';
+import { filterHourTasks, filterTypeTasks } from '../utils/filterTasks';
 
 function TaskHour () {
-  const { patientID, type, setModal } = useModal();
+  const { patientID, setPatientID, type, setModal, hour } = useModal();
   const { patients, setPatients } = usePatients();
-  const { date, shiftHours } = useDate();
   const { theme } = useTheme(); 
 
   const patient = patients.filter((patient) => {
@@ -27,17 +26,19 @@ function TaskHour () {
 
   const { id, patientTasks } = patient[0];
 
-  const [currentHour, setCurrentHour] = useState(date[3]);
-  const [currentTasks, setCurrentTasks] = useState(currentHourTasks(date[3], patientTasks));
+  const [currentHour, setCurrentHour] = useState(hour);
+  const [currentTasks, setCurrentTasks] = useState(determineType(hour));
   const [currentAnimation, setCurrentAnimation] = useState('');
 
-  let typeTask;
 
-  if (type === 'all') {
-    typeTask = currentTasks;
-  }
-  else { 
-    typeTask = taskType(currentTasks, type)
+  function determineType (hour) {
+    let taskType = filterHourTasks(hour, patientTasks)
+
+    if (type !== 'all') {
+      return filterTypeTasks(taskType, type);
+    }
+
+    return taskType;
   }
 
   function icon (type) {
@@ -69,10 +70,10 @@ function TaskHour () {
     };
 
     setCurrentHour(changedHour);
-    setCurrentTasks(currentHourTasks(changedHour, patientTasks));
+    setCurrentTasks(determineType(changedHour));
   }
 
-  const completeTask = (e) => {
+  function completeTask (e) {
     let patientList = [...patients];
     let patientInd = patientList.findIndex(patient => patient.id === patientID);
     let taskInd = patientList[patientInd].patientTasks.findIndex(task => task.id === e.target.value);
@@ -82,44 +83,16 @@ function TaskHour () {
     setPatients(patientList);
   };
 
-  function TimeLine() {
-    return (
-      <div className='d-flex justify-content-evenly hour-bar'>
-        <button
-          className={`btn-hour ${theme}-primary`}
-          onClick={() => showPastTasks(-1)}
-        >
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            className='icon-hour'
-          />
-        </button>
-        <div className={`col-8 col-sm-10 ${theme}-primary text-center d-flex align-items-center justify-content-center`}>
-          <h5>{currentHour}:00</h5>
-        </div>
-        <button
-          className={`btn-hour ${theme}-primary`}
-          onClick={() => showPastTasks(1)}
-        >
-          <FontAwesomeIcon
-            icon={faArrowRight}
-            className='icon-hour'
-          />
-        </button>
-      </div>
-    )
-  };
-
   return (
     <ModalTemplate
-      title={ 'Room #: ' + id + ' | Tasks: ' + typeTask.length }
+      title={ 'Room #: ' + id + ' | Tasks: ' + currentTasks.length }
     >
       <div className='container-fluid'>
-        <TimeLine />
+        <TimeLine showPastTasks={ showPastTasks } currentHour={ currentHour }  />
 
         <div>
-          {typeTask.length > 0
-            ? typeTask.map((task) => {
+          { currentTasks.length > 0
+            ? currentTasks.map((task) => {
               return (
                 <div
                   key={ task.id }
@@ -168,7 +141,8 @@ function TaskHour () {
                       className='btn-circular d-flex align-items-center justify-content-center'
                       id='btn-delete-tasks'
                       onClick={() => {
-                        setModal('removeTask')
+                        setPatientID(task.id);
+                        setModal('removeTask');
                       }}
                     >
                       &times;
@@ -181,7 +155,7 @@ function TaskHour () {
           }
         </div>
 
-        <TimeLine />
+        <TimeLine showPastTasks={showPastTasks} currentHour={currentHour} />
       </div>
 
     </ModalTemplate>

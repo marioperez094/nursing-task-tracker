@@ -1,5 +1,6 @@
 import { tasks, restraintsDoc, admissionDoc } from './tasks';
 import taskIntoArray from './taskIntoArray';
+import addZero from './addZero';
 
 function changeAttributes (object, key, property) {
   let clone = Object.assign({}, object);
@@ -13,11 +14,17 @@ function titleCheck (title) {
   return bool;
 };
 
-function duplicateCheck (id, patientList) {
-  const filter = patientList.filter((patient) => patient.id === id);
+function duplicateCheck (id, patients) {
+  const filter = patients.filter((patient) => patient.id === id);
   let bool = filter.length > 0 && true;
   return bool;
 };
+
+function duplicateTasks (name, tasks) {
+  const filter = tasks.filter((task) => task.name === name);
+  let bool = filter.length > 0 && true;
+  return bool;
+}
 
 function addNewPatient (newPatient, currentShift, date) {
   const { 
@@ -40,7 +47,7 @@ function addNewPatient (newPatient, currentShift, date) {
 
   if (parseFloat(neuro) === 8) {
     delete taskList.neuro.frequency;
-    taskList.neuro.times = ['8:00', '16:00', '20:00', '4:00'];
+    taskList.neuro.times = ['08:00', '16:00', '20:00', '04:00'];
   }
   else {
     taskList.neuro.frequency = parseFloat(neuro);
@@ -56,11 +63,11 @@ function addNewPatient (newPatient, currentShift, date) {
       break;
     case 'medSurg':
       delete taskList.vitals.frequency;
-      taskList.vitals.times = ['8:00', '16:00', '20:00', '4:00'];
+      taskList.vitals.times = ['08:00', '16:00', '20:00', '04:00'];
       delete taskList.temperature.frequency;
-      taskList.temperature.times = ['8:00', '16:00', '20:00', '4:00'];
+      taskList.temperature.times = ['08:00', '16:00', '20:00', '04:00'];
       delete taskList.assessment.frequency;
-      taskList.assessment.times = ['8:00', '16:00', '20:00', '4:00'];
+      taskList.assessment.times = ['08:00', '16:00', '20:00', '04:00'];
     case 'tele':
       delete taskList.sat;
       break;
@@ -87,12 +94,11 @@ function addNewPatient (newPatient, currentShift, date) {
   }
 
   if (admission) {
-    console.log(`${[date[3]]}:00`)
     let addmission = Object.keys(admissionDoc).map((task) => {
       return ({
         name: admissionDoc[task].name,
         type: admissionDoc[task].type,
-        times: [`${[date[3]]}:00`]
+        times: [`${ [addZero(date[3])]}:00`]
       });
     });
 
@@ -103,4 +109,4 @@ function addNewPatient (newPatient, currentShift, date) {
 }
 
 
-export { changeAttributes, titleCheck, duplicateCheck, addNewPatient }
+export { changeAttributes, titleCheck, duplicateCheck, duplicateTasks, addNewPatient }

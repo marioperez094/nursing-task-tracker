@@ -8,7 +8,7 @@ import PatientList from '../../components/PatientList/PatientList'
 import { useDate } from '../../context/DateContext'
 
 //Functions
-import { incompleteTasks, currentShiftTasks, currentHourTasks } from '../../utils/filterTasks';
+import { filterIncompleteTasks, filterShiftTasks, filterHourTasks } from '../../utils/filterTasks';
 
 function PatientFilter (props) {
   const { shiftHours, date } = useDate();
@@ -16,9 +16,9 @@ function PatientFilter (props) {
   const { patient } = props;
   const { id, patientTasks } = patient;
 
-  const incomplete = incompleteTasks(patientTasks);
-  const shiftTasks = currentShiftTasks(shiftHours, incomplete);
-  const hourTasks = currentHourTasks(date[3], incomplete);
+  const incompleteTasks = filterIncompleteTasks(patientTasks);
+  const shiftTasks = filterShiftTasks(shiftHours, incompleteTasks);
+  const hourTasks = filterHourTasks(date[3], incompleteTasks);
 
   return (
     <PatientList 

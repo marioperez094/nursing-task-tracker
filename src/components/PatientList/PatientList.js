@@ -1,38 +1,45 @@
 //External Imports
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 //Components
-import TaskIcons from '../TaskIcons/TaskIcons';
+import TaskSymbols from '../TaskSymbols/TaskSymbols'
 
 //Context 
 import { useModal } from '../../context/ModalContext';
 import { useDate } from '../../context/DateContext';
 
 //Function
-import { taskType } from '../../utils/filterTasks'
+import { filterTypeTasks } from '../../utils/filterTasks'
 
 //Style
 import './PatientList.css';
 
 function PatientList (props) {
-  const { setModal, setPatientID, setType } = useModal();
+  const { setModal, setPatientID } = useModal();
+  const { date } = useDate();
   
   const { id, length, tasks } = props;
+
+  //Filter function to find tasks by type
+  const personalTasks = filterTypeTasks(tasks, 'personal');
+  const medTasks = filterTypeTasks(tasks, 'meds');
 
   return (
     <div className='row gx-0 mb-2 shadow-lg rounded patient-list'>
       <div className='col-2 col-sm-1'>
-        <button
-          className='btn-remove-pt'
+        <Link
+          to='/'
+          className='btn-remove-pt d-flex justify-content-center align-items-center'
           onClick={() => {
             setModal('removePatient');
             setPatientID(id);
           }}
         >
           <h5>&times;</h5>
-        </button>
+        </Link>
       </div>
 
       <div className={`col-8 col-sm-10`}>
@@ -51,57 +58,23 @@ function PatientList (props) {
         </div>
         <div className='row'>
           <div className='col-12'>
-            <div
-              className='btn-pt-tasks d-flex justify-content-evenly py-2'
-            >
-              <button
-                className='btn-task-hour'
-                onClick={() => {
-                  setModal('taskHour');
-                  setPatientID(id);
-                  setType('all')
-                }}
-              >
-                <TaskIcons
-                  tasks={ tasks }
-                  type='clock'
-                />
-              </button>
-
-              <button
-                className='btn-task-hour'
-                onClick={() => {
-                  setModal('taskHour');
-                  setPatientID(id);
-                  setType('personal')
-                }}
-              >
-                <TaskIcons
-                  tasks={ taskType(tasks, 'personal') }
-                  type='personal'
-                />
-              </button>
-
-              <button
-                className='btn-task-hour'
-                onClick={() => {
-                  setModal('taskHour');
-                  setPatientID(id);
-                  setType('meds')
-                }}
-              >
-                <TaskIcons
-                  tasks={ taskType(tasks, 'meds') }
-                  type='meds'
-                />
-              </button>
-            </div>
+            <TaskSymbols
+              id={ id }
+              hour={ date[3] }
+              tasks={ tasks } 
+              personalTasks={ personalTasks } 
+              medTasks={ medTasks } 
+            />
           </div>
         </div>
       </div>
       <div className='col-2 col-sm-1'>
         <button
           className='btn-add-task'
+          onClick={ () => {
+            setModal('addTask');
+            setPatientID(id);
+          } }
         >
           <FontAwesomeIcon
             icon={faFileCirclePlus}

@@ -29,3 +29,7 @@
 .length-border:hover {
   color: black;
 }
+
+.length-border span {
+  font-weight: 500;
+}

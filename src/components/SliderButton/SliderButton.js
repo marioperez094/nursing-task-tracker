@@ -11,8 +11,10 @@ function SliderButton (props) {
     let bool = e.target.checked;
 
     if (bool) {
+      console.log(optionTwo)
       return setOption(optionTwo);
     }
+    console.log(optionOne);
     return setOption(optionOne);
   }
 

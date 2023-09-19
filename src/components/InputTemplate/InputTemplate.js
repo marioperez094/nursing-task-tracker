@@ -11,11 +11,11 @@ function InputTemplate(props) {
     <div className='row input-margin'>
       <label className='col-12 col-form-label'>
         <h5>
-          {inputLabel}
+          { inputLabel }
         </h5>
       </label>
       <div className='col-12 d-flex justify-content-evenly'>
-        {props.children}
+        { props.children }
       </div>
     </div>
   )

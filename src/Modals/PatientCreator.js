@@ -52,6 +52,7 @@ function PatientCreator () {
   function addPatient (e, modalState) {
     e.preventDefault();
     let title = document.getElementById('title');
+    let patientList = [...patients];
 
     if (titleCheck(id)) {
       title.focus();
@@ -67,8 +68,8 @@ function PatientCreator () {
       title.focus();
       return setCheck('limit');
     }
-
-    let patientList = [...patients, addNewPatient(newPatient, shiftHours, date)];
+    
+    patientList.push(addNewPatient(newPatient, shiftHours, date));
 
     patientList.sort((a, b) => a.id - b.id);
 
@@ -98,7 +99,7 @@ function PatientCreator () {
           {check === 'title' && <p className='warning-text'>*Please include a room number</p>}
         </div>
         <div>
-          {check === 'duplicate' && <p className='warning-text'>*Patient Room Number {id} is already in use.</p>}
+          {check === 'duplicate' && <p className='warning-text'>*Patient Room Number { id } is already in use.</p>}
         </div>
         <div>
           {check === 'limit' && <p className='warning-text'>*Maximum patient limit is 10.</p>}

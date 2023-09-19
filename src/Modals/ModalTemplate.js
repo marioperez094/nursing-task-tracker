@@ -33,7 +33,9 @@ const ModalTemplate = (props) => {
           </button>
         </div>
         <div className={`${theme}-title text-center`}>
+          <div className={`${ theme }-body`}>
           <h2>{title}</h2>
+          </div>
         </div>
         <div className='modal-body'>
           {props.children}

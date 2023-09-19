@@ -1,3 +1,5 @@
+import addZero from "./addZero";
+
 function taskIntoArray (tasks, id, shiftHours) {
   let patientTasks = [];
 
@@ -18,9 +20,9 @@ function taskIntoArray (tasks, id, shiftHours) {
         return hour % task.frequency === 0
       }).forEach((time) => {
         patientTasks.push({
-          id: `${id}-${task.name}-${time}`,
+          id: `${ id }-${ task.name }-${ time }`,
           name: task.name,
-          hour: `${time}:00`,
+          hour: `${ addZero(time) }:00`,
           type: task.type,
           complete: false
         })

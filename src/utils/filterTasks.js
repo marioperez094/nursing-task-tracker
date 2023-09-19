@@ -2,25 +2,25 @@ function parseHour (hour) {
   return parseFloat(hour.split(':')[0]);
 };
 
-function currentShiftTasks (shiftHours, tasks) {
+function filterShiftTasks (shiftHours, tasks) {
   return tasks.filter((task) => { 
     return shiftHours.indexOf(parseHour(task.hour)) > -1;
   });
 };
 
-function currentHourTasks (hour, tasks) {
+function filterHourTasks (hour, tasks) {
   return tasks.filter((task) => {
     return parseHour(task.hour) === parseFloat(hour);
   })
 }
 
-function incompleteTasks (tasks) {
+function filterIncompleteTasks (tasks) {
   return tasks.filter((task) => { return !task.complete });
 }
 
-function taskType (tasks, type) {
+function filterTypeTasks (tasks, type) {
   return tasks.filter((task) => { return task.type === type});
 };
 
 
-export { currentShiftTasks, currentHourTasks, incompleteTasks, taskType };
+export { filterShiftTasks, filterHourTasks, filterIncompleteTasks, filterTypeTasks };

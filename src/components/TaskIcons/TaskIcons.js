@@ -31,19 +31,19 @@ const TaskIcons = (props) => {
   return (
     <React.Fragment>
       <div>
-        <div className={`icon-border ${ theme }-border d-flex justify-content-center align-items-center`}>
+        <div className={ `icon-border ${ theme }-border d-flex justify-content-center align-items-center` }>
           <h2>
-            <FontAwesomeIcon
-              icon={icon()}
-              style={{ color: `${ theme === 'blue' ? '#4480bc' : '#8553b8'}` }}
-            />
+            { tasks.length > 0
+              ? <FontAwesomeIcon
+                  icon={ icon() }
+                  style={ { color: `${theme === 'blue' ? '#4480bc' : '#8553b8'}` } }
+                />
+              : <FontAwesomeIcon icon={ faCheck } style={ { color: '#198754' } } />
+            }
           </h2>
         </div>
-        <div className={`length-border ${ theme }-border d-flex justify-content-center align-items-center m-0`}>
-          { tasks.length > 0
-            ? <h6>{ tasks.length }</h6>
-            : <h6><FontAwesomeIcon icon={ faCheck } style={{ color: '#198754'}}/></h6>
-          }
+        <div className={ `length-border ${ theme }-border d-flex justify-content-center align-items-center m-0` }>
+          <span>{ tasks.length }</span>
         </div>
       </div>
     </React.Fragment>

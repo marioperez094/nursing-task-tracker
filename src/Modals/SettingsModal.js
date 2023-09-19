@@ -25,7 +25,12 @@ function SettingsModal () {
         <div className='form-group text-center'>
 
           <InputTemplate inputLabel={'Shift:'}>
-            <SliderButton optionOne='AM' optionTwo='PM' option={ shift } setOption={ setShift }/>
+            <SliderButton 
+              optionOne='AM' 
+              optionTwo='PM' 
+              option={ shift } 
+              setOption={ setShift }
+            />
           </InputTemplate>
 
           <InputTemplate inputLabel={'Theme:'}>
