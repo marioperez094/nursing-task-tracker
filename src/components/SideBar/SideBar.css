@@ -59,6 +59,7 @@ main {
   border-top: 2px solid rgba(255, 255, 255, 0.4);
   position: sticky;
   bottom: 0px;
+  top: 0px;
 }
 
 /*Buttons*/
