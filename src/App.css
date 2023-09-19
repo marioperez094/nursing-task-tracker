@@ -17,3 +17,12 @@
 .warning-text {
   color: #DC3545;
 }
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;
+}

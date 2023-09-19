@@ -15,6 +15,7 @@ import { useModal } from './context/ModalContext';
 
 //Style
 import './App.css'
+import Footer from './Footer/Footer';
 
 function App() {
   const { modal } = useModal();
@@ -27,11 +28,13 @@ function App() {
         <div id='page-container'>
           <Navbar aside={ aside } setAside={ setAside } />
           <SideBar aside={ aside }>
-            <Routes>
-              <Route exact path='/' element={ <Home aside={aside} /> } />
-              <Route path='/patient/:patientRoom' element={ <Patient aside={ aside } /> } />
-              <Route path='/*' element={ <Error /> } />
-            </Routes>
+            <div id='content-wrap'>
+              <Routes>
+                <Route exact path='/' element={ <Home aside={aside} /> } />
+                <Route path='/patient/:patientRoom' element={ <Patient aside={ aside } /> } />
+                <Route path='/*' element={ <Error /> } />
+              </Routes>
+            </div>
           </SideBar>
         </div>
       </Router>
