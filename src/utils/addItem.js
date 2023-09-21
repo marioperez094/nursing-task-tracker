@@ -98,7 +98,7 @@ function addNewPatient (newPatient, currentShift, date) {
       return ({
         name: admissionDoc[task].name,
         type: admissionDoc[task].type,
-        times: [`${ [addZero(date[3])]}:00`]
+        times: [`${ [addZero(date[3])]}00`]
       });
     });
 
