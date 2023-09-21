@@ -6,6 +6,7 @@ import { faFileCirclePlus, faCalendarPlus } from '@fortawesome/free-solid-svg-ic
 //Components 
 import ModalTemplate from './ModalTemplate';
 import InputTemplate from '../components/InputTemplate/InputTemplate';
+import ResetTasks from '../components/ResetTasks/ResetTasks';
 
 //Context
 import { useModal } from '../context/ModalContext';
@@ -21,7 +22,7 @@ import addZero from '../utils/addZero';
 function TaskCreator () {
   const { patientID, setModal, setPatientID } = useModal();
   const { patients, setPatients } = usePatients();
-  const { currentShift } = useDate();
+  const { shiftHours } = useDate();
 
   let resetNewTasks = {
     name: '',
@@ -123,13 +124,15 @@ function TaskCreator () {
       switch (time.length) {
         case 1:
         case 2:
-          return `${ addZero(time) }:00`
+          return `${ addZero(time) }00`
         case 3:
-          return `${ addZero(time[0]) }:${ time[1] }${ time[2] }`
+          return `${ addZero(time[0]) }${ time[1] }${ time[2] }`
         case 4:
-          return `${ time[0] }${time[1]}:${ time[2] }${ time[3] }`
+          return `${ time[0] }${time[1]}${ time[2] }${ time[3] }`
       };
     });
+
+    times.sort((a, b) => a - b)
 
     switch (status) {
       case 'frequency':
@@ -140,7 +143,7 @@ function TaskCreator () {
         break;
     };
 
-    patientList[patientIndex].patientTasks.push(...taskIntoArray(task, id, currentShift));
+    patientList[patientIndex].patientTasks.push(...taskIntoArray(task, id, shiftHours));
 
     setModal(modalState);
     setPatients(patientList);
@@ -155,18 +158,7 @@ function TaskCreator () {
       <form className='text-center container-fluid'>
 
         <div className='row'>
-          <div className='col-12 text-center'>
-            <button
-              className='btn w-100 btn-success'
-              onClick={ () => {
-                setModal('resetTasks');
-                setPatientID(id)
-              } }
-            >
-              <h5><FontAwesomeIcon icon={faCalendarPlus} /> <span>Reset Tasks</span></h5>
-            </button>
-          </div>
-
+          <ResetTasks id={ id }/>
         </div>
 
         <InputTemplate inputLabel='Task Name:'>

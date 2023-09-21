@@ -41,14 +41,12 @@ function Patient() {
         />
 
         <div className='d-flex justify-content-start align-items-center mt-3 patient-list'>
-          <label className='me-4'>
-            <h5>Organize Tasks:</h5>
-          </label>
           <SliderButton 
             optionOne='Time' 
             optionTwo='Tasks' 
             option={ taskOrganizer } 
-            setOption={ setTaskOrganizer } />
+            setOption={ setTaskOrganizer } 
+          />
         </div>
       </div>
       <div className='col-12 mt-3'>

@@ -27,16 +27,17 @@ function App() {
       <Router>
         <div id='page-container'>
           <Navbar aside={aside} setAside={setAside} />
-          <SideBar aside={aside}>
+          
             <div id='content-wrap'>
-              <Routes>
-                <Route exact path='/' element={<Home aside={aside} />} />
-                <Route path='/patient/:patientRoom' element={<Patient aside={aside} />} />
-                <Route path='/*' element={<Error />} />
-              </Routes>
+              <SideBar aside={aside}>
+                <Routes>
+                  <Route exact path='/' element={<Home aside={aside} />} />
+                  <Route path='/patient/:patientRoom' element={<Patient aside={aside} />} />
+                  <Route path='/*' element={<Error />} />
+                </Routes>
+              </SideBar>
             </div>
-            <Footer />
-          </SideBar>
+          <Footer />
         </div>
       </Router>
       {modal !== 'false'

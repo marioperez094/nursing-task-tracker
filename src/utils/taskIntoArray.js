@@ -9,7 +9,7 @@ function taskIntoArray (tasks, id, shiftHours) {
         patientTasks.push({
           id: `${id}-${task.name}-${time}`,
           name: task.name,
-          hour: `${time}`,
+          hour: `${time[0]}${time[1]}:${time[2]}${time[3]}`,
           type: task.type,
           complete: false
         })
