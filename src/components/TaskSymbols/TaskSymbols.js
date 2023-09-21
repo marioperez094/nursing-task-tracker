@@ -7,6 +7,9 @@ import TaskIcons from '../TaskIcons/TaskIcons';
 //Context
 import { useModal } from '../../context/ModalContext';
 
+//Style
+import './TaskSymbols.css'
+
 function TasksSymbols (props) {
   const { setModal, setPatientID, setType, setHour } = useModal();
 
