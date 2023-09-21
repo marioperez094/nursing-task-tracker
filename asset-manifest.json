@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nursing-task-tracker/static/css/main.e32cbc9d.css",
+    "main.js": "/nursing-task-tracker/static/js/main.c44f9cf5.js",
+    "static/js/787.0b4e5f4d.chunk.js": "/nursing-task-tracker/static/js/787.0b4e5f4d.chunk.js",
+    "index.html": "/nursing-task-tracker/index.html",
+    "main.e32cbc9d.css.map": "/nursing-task-tracker/static/css/main.e32cbc9d.css.map",
+    "main.c44f9cf5.js.map": "/nursing-task-tracker/static/js/main.c44f9cf5.js.map",
+    "787.0b4e5f4d.chunk.js.map": "/nursing-task-tracker/static/js/787.0b4e5f4d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e32cbc9d.css",
+    "static/js/main.c44f9cf5.js"
+  ]
+}
