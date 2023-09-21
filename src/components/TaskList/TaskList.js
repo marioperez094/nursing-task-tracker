@@ -10,7 +10,7 @@ import { usePatients } from '../../context/PatientsContext';
 import { taskObject } from '../../utils/listedHours';
 import { filterIncompleteTasks, filterShiftTasks } from '../../utils/filterTasks';
 
-function TaskList (props) {
+function TaskList(props) {
   const { patients, setPatients } = usePatients();
   const { shiftHours } = useDate();
   const { theme } = useTheme();
@@ -34,22 +34,22 @@ function TaskList (props) {
 
   return (
     <div>
-      { namedTasks.map((task) => {
+      {namedTasks.map((task) => {
         return (
           <div
             key={task.name}
-            className={`row shadow-lg rounded mb-3 patient-list`}
+            className={`row gx-0 shadow-lg rounded mb-3 patient-list`}
           >
             <div className='col-12'>
               <h3 className={`ps-4 mt-3 ps-sm-5 ${theme}-title`}>
                 {task.name}
                 <small>
-                  ({ filterIncompleteTasks(task.hour).length })
+                  ({filterIncompleteTasks(task.hour).length})
                 </small>
               </h3>
             </div>
             <div className='col-12 ps-3'>
-              <div className='row'>
+              <div className='row gx-0'>
                 {task.hour.map((hour) => {
                   return (
                     <div className='col-4 col-sm-3 mb-2'>
