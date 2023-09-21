@@ -34,38 +34,36 @@ function Patient() {
     <div className='row'>
       <div className='col-12 mt-3'>
         <PatientList
-          key={ id }
-          id={ id }
-          length={ shiftTasks.length }
-          tasks={ shiftTasks }
+          key={id}
+          id={id}
+          length={shiftTasks.length}
+          tasks={shiftTasks}
         />
 
         <div className='d-flex justify-content-start align-items-center mt-3 patient-list'>
-          <label className='me-4'>
-            <h5>Organize Tasks:</h5>
-          </label>
-          <SliderButton 
-            optionOne='Time' 
-            optionTwo='Tasks' 
-            option={ taskOrganizer } 
-            setOption={ setTaskOrganizer } />
+          <SliderButton
+            optionOne='Time'
+            optionTwo='Tasks'
+            option={taskOrganizer}
+            setOption={setTaskOrganizer}
+          />
         </div>
       </div>
       <div className='col-12 mt-3'>
-        { taskOrganizer === 'Time'
+        {taskOrganizer === 'Time'
           ? <div>
             <PatientTable
-              key={ patient.id }
-              patient={ patient }
-              incompleteTasks={ incompleteTasks }
+              key={patient.id}
+              patient={patient}
+              incompleteTasks={incompleteTasks}
             />
           </div>
           : <div>
-              <TaskList
-                key={ id }
-                patientTasks={ patientTasks }
-              />
-            </div>
+            <TaskList
+              key={id}
+              patientTasks={patientTasks}
+            />
+          </div>
         }
       </div>
     </div>

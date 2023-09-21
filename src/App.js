@@ -9,7 +9,7 @@ import Home from './pages/Home/Home';
 import Patient from './pages/Patient/Patient';
 import Error from './pages/Error/Error';
 import ModalWindow from './Modals/ModalWindows';
-import Footer from './Footer/Footer';
+import Footer from './components/Footer/Footer';
 
 //Context
 import { useModal } from './context/ModalContext';
@@ -24,19 +24,20 @@ function App() {
 
   return (
     <>
-      <Router basename='/nursing-task-tracker/'>
+      <Router basename='/nursing-task-tracker'>
         <div id='page-container'>
           <Navbar aside={aside} setAside={setAside} />
-          <SideBar aside={aside}>
-            <div id='content-wrap'>
+
+          <div id='content-wrap'>
+            <SideBar aside={aside}>
               <Routes>
                 <Route exact path='/' element={<Home aside={aside} />} />
                 <Route path='/patient/:patientRoom' element={<Patient aside={aside} />} />
                 <Route path='/*' element={<Error />} />
               </Routes>
-            </div>
-            <Footer />
-          </SideBar>
+            </SideBar>
+          </div>
+          <Footer />
         </div>
       </Router>
       {modal !== 'false'

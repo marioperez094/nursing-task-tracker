@@ -8,14 +8,15 @@ import RemovePatient from './RemovePatient';
 import RemoveTask from './RemoveTasks';
 import TaskHour from './TaskHour';
 import TaskCreator from './TaskCreator';
+import ResetTasks from './ResetTasks';
 
 //Functions
 import { useModal } from '../context/ModalContext';
 
-function ModalWindow () {
+function ModalWindow() {
   const { modal } = useModal();
 
-  function selectModal (modal) {
+  function selectModal(modal) {
     switch (modal) {
       case 'settings':
         return <SettingsModal />
@@ -29,6 +30,8 @@ function ModalWindow () {
         return <TaskHour />
       case 'addTask':
         return <TaskCreator />
+      case 'resetTasks':
+        return <ResetTasks />
       default:
         return null;
     }
@@ -36,7 +39,7 @@ function ModalWindow () {
 
   return (
     <>
-      { selectModal(modal) }
+      {selectModal(modal)}
     </>
   )
 

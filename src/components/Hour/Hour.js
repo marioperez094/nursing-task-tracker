@@ -27,17 +27,17 @@ const Hour = (props) => {
 
   return (
     <React.Fragment>
-      <tr className='hour-row' id={`${parseFloat(hour) === parseFloat(currentHour) ? `${ theme }-active-hour` : null}`}>
+      <tr className='hour-row' id={`${parseFloat(hour) === parseFloat(currentHour) ? `${theme}-active-hour` : null}`}>
         <td className='text-center'>
-          <h4 className='mt-4'>{hour}:00</h4>
+          <h4 className='mt-4 ps-3'>{hour}:00</h4>
         </td>
         <td className='d-flex justify-content-around'>
           <TaskSymbols
-            id={ id }
-            hour={ hour }
-            tasks={ hourTasks }
-            personalTasks={ personalTasks }
-            medTasks={ medTasks }
+            id={id}
+            hour={hour}
+            tasks={hourTasks}
+            personalTasks={personalTasks}
+            medTasks={medTasks}
           />
         </td>
       </tr>
