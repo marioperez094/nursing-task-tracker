@@ -16,7 +16,7 @@ function Home () {
   const { shift, shiftHours } = useDate();
 
   return (
-    <div className='row'>
+    <div className='row gx-0'>
       <div className='col-12'>
         { patients.length > 0
           ? <>

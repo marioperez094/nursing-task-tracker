@@ -12,7 +12,7 @@ function PatientTable(props) {
   const { patient, incompleteTasks } = props;
 
   return (
-    <div className='row patient-list'>
+    <div className='row gx-0 patient-list'>
       <table className='table table-border bg-light mt-4 shadow-lg p-3 mb-2 bg-body rounded'>
         <thead className='text-center'>
           <tr>

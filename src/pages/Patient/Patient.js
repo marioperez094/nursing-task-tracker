@@ -31,7 +31,7 @@ function Patient() {
   const [taskOrganizer, setTaskOrganizer] = useState('Time');
 
   return (
-    <div className='row'>
+    <div className='row gx-0'>
       <div className='col-12 mt-3'>
         <PatientList
           key={ id }
