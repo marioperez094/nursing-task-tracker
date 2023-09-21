@@ -8,6 +8,7 @@ import RemovePatient from './RemovePatient';
 import RemoveTask from './RemoveTasks';
 import TaskHour from './TaskHour';
 import TaskCreator from './TaskCreator';
+import ResetTasks from './ResetTasks';
 
 //Functions
 import { useModal } from '../context/ModalContext';
@@ -29,6 +30,8 @@ function ModalWindow () {
         return <TaskHour />
       case 'addTask':
         return <TaskCreator />
+      case 'resetTasks':
+        return <ResetTasks />
       default:
         return null;
     }
