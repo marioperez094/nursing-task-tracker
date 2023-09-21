@@ -1,10 +1,10 @@
 const tasks = {
-  temperature : {
+  temperature: {
     name: 'Temperature',
     type: 'chart',
     frequency: 4,
   },
-  vitals : {
+  vitals: {
     name: 'Vitals',
     type: 'chart',
     frequency: 4,
@@ -17,7 +17,7 @@ const tasks = {
   camICU: {
     name: 'CAM ICU',
     type: 'chart',
-    times: ['08:00', '20:00'],
+    times: ['0800', '2000'],
   },
   pain: {
     name: 'Pain',
@@ -27,7 +27,7 @@ const tasks = {
   nihss: {
     name: 'NIHSS',
     type: 'chart',
-    times: ['07:00', '19:00'],
+    times: ['0700', '1900'],
   },
   turns: {
     name: 'Turn and Reposition',
@@ -63,7 +63,7 @@ const tasks = {
     name: 'Lines',
     type: 'chart',
     frequency: 4,
-    },
+  },
   intake: {
     name: 'Intake',
     type: 'chart',
@@ -77,47 +77,47 @@ const tasks = {
   shiftScreen: {
     name: 'AdHoc Shift Screen',
     type: 'chart',
-    times: ['08:00', '20:00'],
+    times: ['0800', '2000'],
   },
   orderEntry: {
     name: 'AdHoc Order Entry',
     type: 'chart',
-    times: ['08:00', '20:00'],
+    times: ['0800', '2000'],
   },
   abcdefBundle: {
     name: 'ABCDEF Bundle',
     type: 'chart',
-    times: ['08:00', '20:00'],
+    times: ['0800', '2000'],
   },
   sat: {
     name: 'Spontaneous Awakening Trial',
     type: 'chart',
-    times: ['08:00', '20:00'],
+    times: ['0800', '2000'],
   },
   planOfCare: {
     name: 'Plan of Care',
     type: 'chart',
-    times: ['05:00', '17:00'],
+    times: ['0500', '1700'],
   },
   chartCheck: {
     name: 'Chart Check',
     type: 'chart',
-    times: ['05:00', '17:00'],
+    times: ['0500', '1700'],
   },
   foleyCare: {
     name: 'Foley Care',
     type: 'chart',
-    times: ['08:00', '20:00'],
+    times: ['0800', '2000'],
   },
   bath: {
     name: 'Bath',
     type: 'chart',
-    times: ['08:00', '20:00'],
+    times: ['0800', '2000'],
   },
   weight: {
     name: 'Weight',
     type: 'chart',
-    times: ['06:00', '18:00'],
+    times: ['0600', '1800'],
   },
 }
 
@@ -125,7 +125,7 @@ const restraintsDoc = {
   renewRestraints: {
     name: 'Renew Restraints',
     type: 'chart',
-    times: ['12:00', '00:00'],
+    times: ['1200', '0000'],
   },
   restraints: {
     name: 'Restraints',
