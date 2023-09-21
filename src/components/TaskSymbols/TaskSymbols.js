@@ -7,10 +7,10 @@ import TaskIcons from '../TaskIcons/TaskIcons';
 //Context
 import { useModal } from '../../context/ModalContext';
 
-//Style
+//Style 
 import './TaskSymbols.css'
 
-function TasksSymbols (props) {
+function TasksSymbols(props) {
   const { setModal, setPatientID, setType, setHour } = useModal();
 
   const { id, hour, tasks, personalTasks, medTasks } = props;
@@ -29,7 +29,7 @@ function TasksSymbols (props) {
         }}
       >
         <TaskIcons
-          tasks={ tasks }
+          tasks={tasks}
           type='clock'
         />
       </button>
@@ -44,7 +44,7 @@ function TasksSymbols (props) {
         }}
       >
         <TaskIcons
-          tasks={ personalTasks }
+          tasks={personalTasks}
           type='personal'
         />
       </button>
@@ -59,7 +59,7 @@ function TasksSymbols (props) {
         }}
       >
         <TaskIcons
-          tasks={ medTasks }
+          tasks={medTasks}
           type='meds'
         />
       </button>
