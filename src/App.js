@@ -9,7 +9,7 @@ import Home from './pages/Home/Home';
 import Patient from './pages/Patient/Patient';
 import Error from './pages/Error/Error';
 import ModalWindow from './Modals/ModalWindows';
-import Footer from './Footer/Footer';
+import Footer from './components/Footer/Footer';
 
 //Context
 import { useModal } from './context/ModalContext';
