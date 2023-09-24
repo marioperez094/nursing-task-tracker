@@ -47,7 +47,7 @@ function addNewPatient (newPatient, currentShift, date) {
 
   if (parseFloat(neuro) === 8) {
     delete taskList.neuro.frequency;
-    taskList.neuro.times = ['08:00', '16:00', '20:00', '04:00'];
+    taskList.neuro.times = ['0800', '1600', '2000', '0400'];
   }
   else {
     taskList.neuro.frequency = parseFloat(neuro);
@@ -63,11 +63,11 @@ function addNewPatient (newPatient, currentShift, date) {
       break;
     case 'medSurg':
       delete taskList.vitals.frequency;
-      taskList.vitals.times = ['08:00', '16:00', '20:00', '04:00'];
+      taskList.vitals.times = ['0800', '1600', '2000', '0400'];
       delete taskList.temperature.frequency;
-      taskList.temperature.times = ['08:00', '16:00', '20:00', '04:00'];
+      taskList.temperature.times = ['0800', '1600', '2000', '0400'];
       delete taskList.assessment.frequency;
-      taskList.assessment.times = ['08:00', '16:00', '20:00', '04:00'];
+      taskList.assessment.times = ['0800', '1600', '2000', '0400'];
     case 'tele':
       delete taskList.sat;
       break;
