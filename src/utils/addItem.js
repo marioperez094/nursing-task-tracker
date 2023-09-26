@@ -80,7 +80,7 @@ function addNewPatient (newPatient, currentShift, date) {
   };
 
   if (sedation) {
-    tasks.rass.frequency = 1;
+    taskList.rass.frequency = 1;
   }
 
   let statusTasks = Object.keys(taskList).map((task) => taskList[task])
